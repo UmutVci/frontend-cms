@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "../features/auth/pages/LoginPage";
-import Sidebar from "../components/Sidebar";
-import MoviesPage from "../features/admin/MoviesPage";
 import OverviewPage from "../features/admin/OverviewPage";
 
 export default function App() {
