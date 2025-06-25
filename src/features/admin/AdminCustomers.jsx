@@ -11,7 +11,6 @@ export default function AdminCustomers() {
     const [currentPage, setCurrentPage] = useState(1)
 
     // 3) O sayfanın öğeleri
-    const startIdx     = (currentPage - 1) * itemsPerPage
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />

@@ -1,13 +1,28 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import OverviewPage from "../features/admin/OverviewPage";
 import MoviesPage from "../features/admin/MoviesPage";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 import AdminCustomers from "../features/admin/AdminCustomers";
 import LoginPage from "../features/auth/pages/LoginPage";
-import AdminMovies from "../features/admin/AdminMovies";
+import ClerkSearchBookings from "../features/clerk/ClerkSearchBookings";
+import ClerkMoviesPage from "../features/clerk/ClerkMoviesPage";
+import ClerkFeedback from "../features/clerk/ClerkFeedback";
+import ClerkSession from "../features/clerk/ClerkSession";
 
 export default function App() {
+    const movie = {
+        id : "1",
+        name : "Elio",
+        time : "1 st 30 min",
+        d : "2D",
+        category : "family",
+        img : "https://lumiere-a.akamaihd.net/v1/images/image_9ca31b20.jpeg?region=0%2C0%2C540%2C810",
+    sessions : [
+        {id : 1, type: "IMAX", time : "11:45", isFull : false},
+        {id : 2, type: "normal", time : "13:15" , isFull : false},
+        {id : 3, type: "normal", time : "14:45" , isFull : false},
+        {id : 4, type: "normal", time : "16:15",isFull : true},
+        {id : 5, type: "IMAX", time : "19:45",isFull : false}
+    ] }
     return (
         <BrowserRouter>
             <Routes>
@@ -15,6 +30,10 @@ export default function App() {
                 <Route path="/home" element={<OverviewPage />} />
                 <Route path="/admin/customers" element={<AdminCustomers />}/>
                 <Route path="/admin/movies" element={<MoviesPage />}/>
+                <Route path="/clerk/bookings" element={<ClerkSearchBookings />}/>
+                <Route path="/clerk/movies" element={<ClerkMoviesPage/>}/>
+                <Route path="/clerk/feedback" element={<ClerkFeedback/>}/>
+                <Route path="/clerk/sessions" element={<ClerkSession movie={movie}/>}/>
                 <Route path="/admin" element={<div>Admin Dashboard</div>} />
                 <Route path="/clerk" element={<div>Ticket Clerk Panel</div>} />
             </Routes>

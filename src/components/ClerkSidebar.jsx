@@ -2,12 +2,10 @@
 
 import { NavLink } from 'react-router-dom'
 import {
-    EyeIcon,
     InboxIcon,
     FilmIcon,
     CalendarIcon,
     UserGroupIcon,
-    ChartBarIcon,
     CogIcon,
     LogoutIcon,
 } from '@heroicons/react/outline'

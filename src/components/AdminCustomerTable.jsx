@@ -12,8 +12,8 @@ export default function AdminCustomerTable(){
                 <thead className="bg-gray-50 text-gray-700 text-sm font-semibold">
                 <tr>
                     <th className="px-4 py-2 text-center">Customer ID</th>
-                    <th className="px-4 py-2">Customer Name</th>
-                    <th className="px-4 py-2">Customer Email</th>
+                    <th className="px-4 py-2 text-center">Customer Name</th>
+                    <th className="px-4 py-2 text-center">Customer Email</th>
                     <th className="px-4 py-2 text-center"></th>
                 </tr>
                 </thead>

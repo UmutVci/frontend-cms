@@ -14,8 +14,6 @@ export default function MoviesPage() {
     const [currentPage, setCurrentPage] = useState(1)
 
     // 3) O sayfanın öğeleri
-    const startIdx     = (currentPage - 1) * itemsPerPage
-    const currentItems = movies.slice(startIdx, startIdx + itemsPerPage)
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />
