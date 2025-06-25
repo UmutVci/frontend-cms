@@ -1,10 +1,10 @@
 import { SearchIcon } from '@heroicons/react/solid'
 
-export default function Header() {
+export default function Header({title}) {
     return(
         <div className="header-container flex items-center justify-between h-20 bg-white px-6 shadow-md font-bold font-[Poppins]">
             {/* Sol başlık */}
-            <h1 className="title text-2xl font-normal text-black ml-4">Overview</h1>
+            <h1 className="title text-2xl font-normal text-black ml-4">{title}</h1>
 
             {/* Sağ taraf (arama, profil vs.) */}
             <div className="flex items-center space-x-6">
