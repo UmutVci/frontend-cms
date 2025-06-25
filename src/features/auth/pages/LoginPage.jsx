@@ -1,23 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import useAuth from "../store/useAuth";
 import { useState } from "react";
+import useAuth from '../store/useAuth'
+
 
 export default function LoginPage() {
     const { setUser, setRole } = useAuth();
     const navigate = useNavigate();
-
+    const loginUser = useAuth((state) => state.loginUser)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (email && password) {
+            const success = await loginUser({email, password})
+            if (success) {
+                const role = email === "admin@cms.com" ? "admin" : "clerk";
 
-            const role = email === "admin@cms.com" ? "admin" : "clerk";
+                setUser({name: email});
+                setRole(role);
 
-            setUser({ name: email });
-            setRole(role);
-
-            navigate(role === "admin" ? "/admin" : "/clerk");
+                navigate(role === "admin" ? "/admin" : "/clerk");
+            }
         }
     };
 
@@ -35,16 +38,20 @@ export default function LoginPage() {
                     </div>
                     <hr />
                     <div className="loginForm px-10 pt-6">
-                        <form className="w-80">
+                        <form className="w-80" onSubmit={handleLogin}>
                             <input
                                 type="text"
-                                placeholder="Username"
+                                placeholder="Email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 required
                                 className="block w-full mb-4 p-2 rounded"
                             />
                             <input
                                 type="password"
                                 placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 required
                                 className="block w-full mb-4 p-2 rounded"
                             />
