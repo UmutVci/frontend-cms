@@ -16,15 +16,14 @@ export default function MoviesPage() {
                 <Header />
 
                 <main className="flex-1 p-10 bg-[#D9D9D9]">
-                    <div className="bg-white w-full h-full mx-10 my-10 rounded-xl p-6 overflow-auto">
-                        {/* Butonlar */}
+                    <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <div className="flex items-center justify-between mb-6">
-                            <button className="bg-[#202123] text-white h-12 w-48 rounded-xl flex items-center justify-center">
-                                <span className="text-2xl">+ Add Movie</span>
+                            <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
+                                <span className="text-xl">+ Add Movie</span>
                             </button>
-                            <button className="ml-auto flex items-center h-12 w-48 rounded-3xl border-2 border-gray-400 justify-center">
+                            <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
                                 <span className="text-lg text-gray-400 mr-2">Sort By:</span>
-                                <span className="text-2xl">ID</span>
+                                <span className="text-xl">ID</span>
                             </button>
                         </div>
 
