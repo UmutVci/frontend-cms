@@ -23,7 +23,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+*{
+  font-family: 'Poppins', sans-serif ;
+}
 .App-link {
   color: #61dafb;
 }
@@ -43,6 +45,6 @@
   font-family: 'Poppins', sans-serif, bold ;
 }
 .moviespage {
-  font-family: 'Poppins', sans-serif, ;
+  font-family: 'Poppins', sans-serif ;
 
 }

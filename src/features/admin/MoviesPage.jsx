@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Sidebar from '../../components/Sidebar'
 import Header  from '../../components/Header'
+import Pagination from '../../components/Pagination'
 
 export default function MoviesPage() {
     const movies = [
@@ -8,6 +9,13 @@ export default function MoviesPage() {
         { id: 2, name: "Interstellar", imageUrl: "/interstellar.jpg" },
         { id: 3, name: "Memento",      imageUrl: "/memento.jpg" },
     ];
+    const itemsPerPage = 6
+    const pageCount    = Math.ceil(movies.length / itemsPerPage)
+    const [currentPage, setCurrentPage] = useState(1)
+
+    // 3) O sayfanın öğeleri
+    const startIdx     = (currentPage - 1) * itemsPerPage
+    const currentItems = movies.slice(startIdx, startIdx + itemsPerPage)
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />
@@ -19,11 +27,11 @@ export default function MoviesPage() {
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <div className="flex items-center justify-between mb-6">
                             <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
-                                <span className="text-xl">+ Add Movie</span>
+                                <span className="text-l">+ Add Movie</span>
                             </button>
                             <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
-                                <span className="text-lg text-gray-400 mr-2">Sort By:</span>
-                                <span className="text-xl">ID</span>
+                                <span className="text-l text-gray-400 mr-2">Sort By:</span>
+                                <span className="text-l">ID</span>
                             </button>
                         </div>
 
@@ -42,6 +50,13 @@ export default function MoviesPage() {
                                 </React.Fragment>
                             ))}
                         </div>
+                        <div className="mt-auto">
+                        <Pagination
+                            currentPage={currentPage}
+                            pageCount={pageCount}
+                            onPageChange={setCurrentPage}
+                        />
+                    </div>
                     </div>
                 </main>
             </div>
