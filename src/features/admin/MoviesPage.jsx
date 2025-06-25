@@ -23,7 +23,7 @@ export default function MoviesPage() {
             <div className="flex-1 flex flex-col">
                 <Header />
 
-                <main className="flex-1 p-10 bg-[#D9D9D9]">
+                <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <div className="flex items-center justify-between mb-6">
                             <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">

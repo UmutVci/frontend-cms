@@ -1,0 +1,28 @@
+import React from "react";
+import CustomerRow from "./AdminCustomerTableRows";
+export default function AdminCustomerTable(){
+    const customers = [
+        { id: 1, name: 'Umut AVCI', email: 'umut.avci@study.thws.de' },
+        { id: 2, name: 'Samet AVCI', email: 'samet.avci@study.thws.de' },
+        { id: 3, name: 'Cihan Can', email: 'cihan.can@study.thws.de' },
+    ]
+    return (
+        <div className="overflow-x-auto mt-8">
+            <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
+                <thead className="bg-gray-50 text-gray-700 text-sm font-semibold">
+                <tr>
+                    <th className="px-4 py-2 text-center">Customer ID</th>
+                    <th className="px-4 py-2">Customer Name</th>
+                    <th className="px-4 py-2">Customer Email</th>
+                    <th className="px-4 py-2 text-center"></th>
+                </tr>
+                </thead>
+                <tbody className="bg-white">
+                {customers.map((customer) => (
+                    <CustomerRow key={customer.id} customer={customer} />
+                ))}
+                </tbody>
+            </table>
+        </div>
+    )
+}

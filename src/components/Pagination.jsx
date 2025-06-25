@@ -4,7 +4,7 @@ export default function Pagination({ currentPage, pageCount, onPageChange }) {
     const pages = Array.from({ length: pageCount }, (_, i) => i + 1)
 
     return (
-        <nav className="flex justify-center items-center space-x-2 mt-6">
+        <nav className="flex justify-center items-center space-x-2 mt-10">
             <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
