@@ -11,9 +11,11 @@ export default function MovieRow({ id, name, imageUrl }) {
             </div>
 
             {/* Başlık kutusu */}
-            <div className="flex items-center justify-center bg-[#D9D9D9] rounded-3xl w-[180px] my-3 h-10 font-bold text-black">
-                {name}
-            </div>
+            <a href="">
+                <div className="flex items-center justify-center bg-[#D9D9D9] rounded-3xl w-[180px] my-3 h-10 font-bold text-black">
+                    {name}
+                </div>
+            </a>
         </div>
     );
 }
