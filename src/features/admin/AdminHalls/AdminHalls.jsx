@@ -1,45 +1,49 @@
 import React, {useEffect, useState} from "react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
-import AdminCustomersSearchBar from "../../../components/AdminCustomersSearchBar";
+import SearchBar from "../../../components/AdminCustomersSearchBar";
+import AdminSessionsTable from "../../../components/AdminSessions/AdminSessionsTable";
 import Pagination from "../../../components/Pagination";
-import AdminTicketClerksTable from "../../../components/AdminTicketClerks/AdminTicketClerksTable";
-import AdminTicketClerkService from "./AdminTicketClerkService";
+import HallService from "./HallService";
+import AdminHallsTable from "../../../components/AdminHalls/AdminHallsTable";
 
-export default function AdminTicketClerk() {
-    const [clerks, setClerks] = useState([]);
+export default function AdminHalls() {
+    const [halls, setHalls] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
-            AdminTicketClerkService.getAll()
-                .then(data => setClerks(data))
-                .catch(error => console.error(error));
-        };
-
-        fetchData();
+            HallService.getAll
+                .then(data => setHalls(data))
+                .catch(error => console.log("Data couldnt fetch :" + error))
+        }
     }, []);
-    console.log(clerks);
+
 
     const itemsPerPage = 6
     const pageCount    = Math.ceil(12 / itemsPerPage)
     const [currentPage, setCurrentPage] = useState(1)
+
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />
-            <div className="flex-1  flex-col">
-                <Header title="Ticket Clerks" />
-                <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
+
+            <div className="flex-1 flex flex-col">
+                <Header title="Halls" />
+
+                <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-                        <AdminCustomersSearchBar />
+                        <SearchBar />
                         <div className="flex items-center justify-between mb-6">
                             <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
-                                <span className="text-l">+ Add Ticket Clerk</span>
+                                <span className="text-l">+ Add Hall</span>
                             </button>
                             <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
                                 <span className="text-l text-gray-400 mr-2">Sort By:</span>
                                 <span className="text-l">ID</span>
                             </button>
                         </div>
-                        <AdminTicketClerksTable clerks = {clerks} />
+                        <AdminHallsTable halls = {halls} />
+
                         <div className="mt-auto">
                             <Pagination
                                 currentPage={currentPage}
@@ -51,5 +55,5 @@ export default function AdminTicketClerk() {
                 </main>
             </div>
         </div>
-    )
+    );
 }

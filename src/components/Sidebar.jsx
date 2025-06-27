@@ -8,13 +8,14 @@ import {
     CogIcon,
     LogoutIcon,
 } from '@heroicons/react/outline'
-import {UsersIcon} from "@heroicons/react/solid";
+import {UsersIcon, ViewBoardsIcon} from "@heroicons/react/solid";
 
 export default function Sidebar() {
     const items = [
         { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
         { path: '/admin/movies',      label: 'Movies',     Icon: FilmIcon },
         { path: '/admin/sessions',    label: 'Sessions',   Icon: CalendarIcon },
+        { path: '/admin/halls',     label: 'Halls',    Icon: ViewBoardsIcon },
         { path: '/admin/customers',   label: 'Customers',  Icon: UserGroupIcon },
         { path: '/admin/ticket-clerks',     label: 'Ticket Clerks',    Icon: UsersIcon },
     ]

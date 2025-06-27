@@ -11,6 +11,7 @@ import AdminMessages from "../features/admin/AdminFeedbacks/AdminMessages";
 import AdminSessions from "../features/admin/AdminSessions/AdminSessions";
 import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
 import AddMovie from "../features/admin/AdminMovies/AddMovie";
+import AdminHalls from "../features/admin/AdminHalls/AdminHalls";
 
 
 export default function App() {
@@ -43,6 +44,7 @@ export default function App() {
                 <Route path="/admin/messages" element={<AdminMessages />}/>
                 <Route path="/admin/sessions" element={<AdminSessions/>}/>
                 <Route path="/admin/ticket-clerks" element={<AdminTicketClerk/>}/>
+                <Route path="/admin/halls" element={<AdminHalls />}/>
             </Routes>
         </BrowserRouter>
     );
