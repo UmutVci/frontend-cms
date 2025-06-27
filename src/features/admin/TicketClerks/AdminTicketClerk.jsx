@@ -16,7 +16,7 @@ export default function AdminTicketClerk() {
         };
 
         fetchData();
-    }, []);
+    });
     console.log(clerks);
 
     const itemsPerPage = 6

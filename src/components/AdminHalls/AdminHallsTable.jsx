@@ -1,12 +1,8 @@
 import CustomerRow from "../AdminCustomer/AdminCustomerTableRows";
 import React from "react";
+import HallsRow from "./AdminHallsTableRows";
 
 export default function AdminHallsTable({halls}){
-    const customers = [
-        { id: 1, name: 'Umut AVCI', email: 'umut.avci@study.thws.de' },
-        { id: 2, name: 'Samet AVCI', email: 'samet.avci@study.thws.de' },
-        { id: 3, name: 'Cihan Can', email: 'cihan.can@study.thws.de' },
-    ]
     return (
         <div className="overflow-x-auto mt-8">
             <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
@@ -21,7 +17,7 @@ export default function AdminHallsTable({halls}){
                 </thead>
                 <tbody className="bg-white">
                 {halls.map((hall) => (
-                    <CustomerRow key={hall.id} hall={hall} />
+                    <HallsRow key={hall.id} hall={hall} />
                 ))}
                 </tbody>
             </table>

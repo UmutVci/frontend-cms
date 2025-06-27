@@ -4,18 +4,18 @@ import Header  from '../../../components/Header'
 import Pagination from '../../../components/Pagination'
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import AdminMoviesTable from "../../../components/AdminMovies/AdminMoviesTable";
-import ClerkMoviesService from "../../../services/MovieService";
+import MoviesService from "../../../services/MovieService";
 
 export default function MoviesPage() {
     const [movies, setMovies] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            ClerkMoviesService.getAll()
+            MoviesService.getAll()
                 .then(data => setMovies(data))
                 .catch(error => console.log("data couldnt fetch : " + error))
         }
         fetchData();
-    }, []);
+    });
 
     const itemsPerPage = 6
     const pageCount    = Math.ceil(movies.length / itemsPerPage)

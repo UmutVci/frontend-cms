@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import SearchBar from "../../../components/AdminCustomersSearchBar";
-import AdminSessionsTable from "../../../components/AdminSessions/AdminSessionsTable";
 import Pagination from "../../../components/Pagination";
 import HallService from "../../../services/HallService";
 import AdminHallsTable from "../../../components/AdminHalls/AdminHallsTable";
@@ -12,12 +11,12 @@ export default function AdminHalls() {
 
     useEffect(() => {
         const fetchData = async () => {
-            HallService.getAll
+            HallService.getAll()
                 .then(data => setHalls(data))
                 .catch(error => console.log("Data couldnt fetch :" + error))
         }
         fetchData()
-    }, []);
+    });
 
 
     const itemsPerPage = 6
