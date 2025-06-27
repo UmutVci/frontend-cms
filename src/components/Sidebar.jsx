@@ -12,7 +12,6 @@ import {UsersIcon} from "@heroicons/react/solid";
 
 export default function Sidebar() {
     const items = [
-        { path: '/admin',    label: 'Overview',   Icon: EyeIcon },
         { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
         { path: '/admin/movies',      label: 'Movies',     Icon: FilmIcon },
         { path: '/admin/sessions',    label: 'Sessions',   Icon: CalendarIcon },

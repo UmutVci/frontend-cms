@@ -26,9 +26,9 @@ export default function MoviesPage() {
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <SearchBar />
                         <div className="flex items-center justify-between mb-6">
-                            <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
+                            <a href="/admin/addMovie"><button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
                                 <span className="text-l">+ Add Movie</span>
-                            </button>
+                            </button></a>
                             <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
                                 <span className="text-l text-gray-400 mr-2">Sort By:</span>
                                 <span className="text-l">ID</span>

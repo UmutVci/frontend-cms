@@ -1,15 +1,27 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import AdminCustomersSearchBar from "../../../components/AdminCustomersSearchBar";
 import Pagination from "../../../components/Pagination";
 import AdminTicketClerksTable from "../../../components/AdminTicketClerks/AdminTicketClerksTable";
+import AdminTicketClerkService from "./AdminTicketClerkService";
 
 export default function AdminTicketClerk() {
+    const [clerks, setClerks] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            AdminTicketClerkService.getAll()
+                .then(data => setClerks(data))
+                .catch(error => console.error(error));
+        };
+
+        fetchData();
+    }, []);
+    console.log(clerks);
+
     const itemsPerPage = 6
     const pageCount    = Math.ceil(12 / itemsPerPage)
     const [currentPage, setCurrentPage] = useState(1)
-
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />
@@ -27,7 +39,7 @@ export default function AdminTicketClerk() {
                                 <span className="text-l">ID</span>
                             </button>
                         </div>
-                        <AdminTicketClerksTable />
+                        <AdminTicketClerksTable clerks = {clerks} />
                         <div className="mt-auto">
                             <Pagination
                                 currentPage={currentPage}

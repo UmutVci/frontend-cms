@@ -10,7 +10,7 @@ import ClerkSession from "../features/clerk/ClerkSession/ClerkSession";
 import AdminMessages from "../features/admin/AdminFeedbacks/AdminMessages";
 import AdminSessions from "../features/admin/AdminSessions/AdminSessions";
 import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
-import AddMovie from "../features/admin/AddMovie";
+import AddMovie from "../features/admin/AdminMovies/AddMovie";
 
 
 export default function App() {

@@ -1,5 +1,5 @@
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
+import Sidebar from "../../../components/Sidebar";
+import Header from "../../../components/Header";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 
@@ -50,7 +50,7 @@ export default function AddMovieForm() {
             <label className="block text-black font-semibold">Image URL</label>
             <input
                 type="text"
-                className="border-1 border-gray-300 rounded-md h-8 w-full"
+                className="border-2 border-gray-300 rounded-md h-8 w-full"
                 required
             />
 

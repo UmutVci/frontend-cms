@@ -1,11 +1,7 @@
 import React from "react";
 import ClerksRow from "./AdminTicketClerksRows";
 
-export default function AdminTicketClerksTable(){
-    const clerks = [
-        { id: 1, email: "umutavci03@gmail.com",   password: "************" },
-        { id: 2, email: "sametavci03@gmail.com",    password: "***********"},
-    ]
+export default function AdminTicketClerksTable({clerks}){
     return (
         <div className="overflow-x-auto mt-8">
             <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
