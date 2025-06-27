@@ -4,7 +4,7 @@ import Header from "../../../components/Header";
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import AdminSessionsTable from "../../../components/AdminSessions/AdminSessionsTable";
 import Pagination from "../../../components/Pagination";
-import HallService from "./HallService";
+import HallService from "../../../services/HallService";
 import AdminHallsTable from "../../../components/AdminHalls/AdminHallsTable";
 
 export default function AdminHalls() {

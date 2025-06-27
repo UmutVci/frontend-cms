@@ -1,8 +1,7 @@
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
-import ClerkMoviesService from "../../clerk/ClerkMovies/ClerkMoviesService";
+import ClerkMoviesService from "../../../services/MovieService";
 import {useNavigate} from "react-router-dom";
 
 export default function AddMovieForm() {

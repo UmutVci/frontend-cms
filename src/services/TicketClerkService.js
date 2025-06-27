@@ -1,5 +1,5 @@
-import api from '../../../lib/axios';
-class AdminTicketClerkService {
+import api from '../lib/axios';
+class TicketClerkService {
 
     async getAll() {
         const response = await api.get('/ticket-clerks')
@@ -27,4 +27,4 @@ class AdminTicketClerkService {
     }
 }
 
-export default new AdminTicketClerkService();
+export default new TicketClerkService();

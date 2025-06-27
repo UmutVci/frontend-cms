@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import ClerkSidebar from "../../../components/ClerkSidebar";
 import Header from "../../../components/Header";
 import Movie from "../../../components/ClerkMovies/Movie";
-import ClerkMoviesService from "./ClerkMoviesService";
+import ClerkMoviesService from "../../../services/MovieService";
 
 export default function ClerkMoviesPage() {
     const [movies, setMovies] = useState([]);

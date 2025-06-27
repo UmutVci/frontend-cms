@@ -4,7 +4,7 @@ import Header  from '../../../components/Header'
 import Pagination from '../../../components/Pagination'
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import AdminMoviesTable from "../../../components/AdminMovies/AdminMoviesTable";
-import ClerkMoviesService from "../../clerk/ClerkMovies/ClerkMoviesService";
+import ClerkMoviesService from "../../../services/MovieService";
 
 export default function MoviesPage() {
     const [movies, setMovies] = useState([]);

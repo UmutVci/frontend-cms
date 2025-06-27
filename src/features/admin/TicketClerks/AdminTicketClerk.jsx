@@ -4,13 +4,13 @@ import Header from "../../../components/Header";
 import AdminCustomersSearchBar from "../../../components/AdminCustomersSearchBar";
 import Pagination from "../../../components/Pagination";
 import AdminTicketClerksTable from "../../../components/AdminTicketClerks/AdminTicketClerksTable";
-import AdminTicketClerkService from "./AdminTicketClerkService";
+import TicketClerkService from "../../../services/TicketClerkService";
 
 export default function AdminTicketClerk() {
     const [clerks, setClerks] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            AdminTicketClerkService.getAll()
+            TicketClerkService.getAll()
                 .then(data => setClerks(data))
                 .catch(error => console.error(error));
         };
