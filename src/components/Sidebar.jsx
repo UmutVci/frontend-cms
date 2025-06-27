@@ -15,11 +15,11 @@ import {
 export default function Sidebar() {
     // Menü öğeleri: { path, label, Icon }
     const items = [
-        { path: '/overview',    label: 'Overview',   Icon: EyeIcon },
-        { path: '/messages',    label: 'Messages',   Icon: InboxIcon },
-        { path: '/movies',      label: 'Movies',     Icon: FilmIcon },
-        { path: '/sessions',    label: 'Sessions',   Icon: CalendarIcon },
-        { path: '/customers',   label: 'Customers',  Icon: UserGroupIcon },
+        { path: '/admin',    label: 'Overview',   Icon: EyeIcon },
+        { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
+        { path: '/admin/movies',      label: 'Movies',     Icon: FilmIcon },
+        { path: '/admin/sessions',    label: 'Sessions',   Icon: CalendarIcon },
+        { path: '/admin/customers',   label: 'Customers',  Icon: UserGroupIcon },
         { path: '/reports',     label: 'Reports',    Icon: ChartBarIcon },
     ]
 

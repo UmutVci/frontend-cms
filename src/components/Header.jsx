@@ -1,6 +1,9 @@
 import { SearchIcon } from '@heroicons/react/solid'
+import useAuth from "../features/auth/store/useAuth";
 
 export default function Header({title}) {
+    const user = useAuth((state) => state.user);
+
     return(
         <div className="header-container flex items-center justify-between h-20 bg-white px-6 shadow-md font-bold font-[Poppins]">
             {/* Sol başlık */}
@@ -22,13 +25,13 @@ export default function Header({title}) {
                 </form>
                 {/* Profile image */}
                 <img
-                    className="w-16 h-16 rounded-full object-cover"
+                    className="w-12 h-12 rounded-full object-cover"
                     src="/pass.jpg"
                     alt="Profile"
                 />
 
                 {/* Username */}
-                <span className="text-black font-medium text-md">Cihan Can</span>
+                <span className="text-black font-medium text-md">{user.name}</span>
 
                 {/* Dropdown icon */}
                 <svg

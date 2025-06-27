@@ -12,12 +12,11 @@ import {
 //TO DO : EMOJILERIN DEGISMESI LAZIM
 export default function ClerkSidebar() {
     const items = [
-        { path: '/movies-movies-page',    label: 'Movies',   Icon: FilmIcon },
-        { path: '/seat-selection',    label: 'Seat Selection',   Icon: InboxIcon },
-        { path: '/customer-subscription',      label: 'Customer Subscription',     Icon: FilmIcon },
-        { path: '/feedback',    label: 'Feedback',   Icon: CalendarIcon },
-        { path: '/search-booking',   label: 'Search Booking',  Icon: UserGroupIcon },
-        { path: '/settings',     label: 'Settings',    Icon: UserGroupIcon},
+        { path: '/clerk/movies',    label: 'Movies',   Icon: FilmIcon },
+       /* { path: '/seat-selection',    label: 'Seat Selection',   Icon: InboxIcon },
+        { path: '/customer-subscription',      label: 'Customer Subscription',     Icon: FilmIcon },*/
+        { path: '/clerk/feedback',    label: 'Feedback',   Icon: CalendarIcon },
+        { path: '/clerk/bookings',   label: 'Search Booking',  Icon: UserGroupIcon },
     ]
 
     return (

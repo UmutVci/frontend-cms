@@ -10,16 +10,15 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleLogin = async () => {
+    const handleLogin = async (e) => {
+        e.preventDefault();
         if (email && password) {
             const success = await loginUser({email, password})
             if (success) {
                 const role = email === "admin@cms.com" ? "admin" : "clerk";
-
-                setUser({name: email});
+                setUser({ name: email });
                 setRole(role);
-
-                navigate(role === "admin" ? "/admin" : "/clerk");
+                navigate(role === "admin" ? "/admin" : "/clerk/movies");
             }
         }
     };
