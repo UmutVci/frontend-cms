@@ -8,6 +8,7 @@ const MessagesRow = ({ message }) => {
             <td className="px-4 py-3 text-center">{message.hall}</td>
             <td className="px-4 py-3 text-center">{message.description}</td>
         </tr>
+
     )
 }
 
