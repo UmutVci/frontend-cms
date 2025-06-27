@@ -9,6 +9,8 @@ import ClerkFeedback from "../features/clerk/ClerkFeedback";
 import ClerkSession from "../features/clerk/ClerkSession";
 import AdminMessages from "../features/admin/AdminMessages";
 import AdminSessions from "../features/admin/AdminSessions";
+import AddMovie from "../features/admin/AddMovie";
+
 
 export default function App() {
     const movie = {
@@ -32,6 +34,7 @@ export default function App() {
                 <Route path="/admin" element={<OverviewPage />} />
                 <Route path="/admin/customers" element={<AdminCustomers />}/>
                 <Route path="/admin/movies" element={<MoviesPage />}/>
+                <Route path="/admin/addMovie" element={<AddMovie />}/>
                 <Route path="/clerk/bookings" element={<ClerkSearchBookings />}/>
                 <Route path="/clerk/movies" element={<ClerkMoviesPage />}/>
                 <Route path="/clerk/feedback" element={<ClerkFeedback />}/>

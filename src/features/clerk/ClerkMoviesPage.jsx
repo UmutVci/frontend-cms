@@ -6,7 +6,7 @@ import Movie from "../../components/Movie";
 
 export default function ClerkMoviesPage() {
     const movies = [
-        { id: 1, name: "Spider Man",               imageUrl: "/spiderman.jpg" },
+        { id: 1, name: "Spider Man",               imageUrl: "https://pixelz.cc/wp-content/uploads/2017/11/spider-man-uhd-4k-wallpaper.jpg" },
         { id: 2, name: "Lilo & Stitch",            imageUrl: "/lilo.jpg" },
         { id: 3, name: "The Movie",                imageUrl: "/themovie.jpg" },
         { id: 4, name: "28 Years Later",           imageUrl: "/28.jpg" },

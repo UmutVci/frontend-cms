@@ -1,35 +1,25 @@
-import React, {useState} from 'react'
-import Sidebar from '../../components/Sidebar'
-import Header  from '../../components/Header'
-import AdminCustomersSearchBar  from '../../components/AdminCustomersSearchBar'
-import AdminCustomerTable from "../../components/AdminCustomerTable";
-import Pagination from "../../components/Pagination";
+import Sidebar from "../../components/Sidebar";
+import Header from "../../components/Header";
+import React from "react";
 
 export default function AdminCustomers() {
-    const itemsPerPage = 6
-    const pageCount    = Math.ceil(12 / itemsPerPage)
-    const [currentPage, setCurrentPage] = useState(1)
-
-    // 3) O sayfanın öğeleri
     return (
-        <div className="h-screen flex font-[Poppins]">
+        <div className="flex h-screen overflow-hidden">
+            {/* Sol: Sidebar */}
             <Sidebar />
-            <div className="flex-1 flex flex-col">
+
+            {/* Sağ: Header + Page Content */}
+            <div className="flex flex-col flex-1 overflow-y-auto">
                 <Header title="Customers" />
-                <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
-                    <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-                        <AdminCustomersSearchBar />
-                        <AdminCustomerTable />
-                        <div className="mt-auto">
-                            <Pagination
-                                currentPage={currentPage}
-                                pageCount={pageCount}
-                                onPageChange={setCurrentPage}
-                            />
-                        </div>
+
+                {/* SAYFA İÇERİĞİ */}
+                <div className="bg-[#D9D9D9] h-screen flex items-center justify-center">
+                    <div className="form bg-white pt-10 pb-16 pl-20 pr-20 rounded-md w-full h-full px-64 mx-64">
+
                     </div>
-                </main>
+                </div>
+
             </div>
         </div>
-    )
+    );
 }

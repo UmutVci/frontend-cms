@@ -10,7 +10,8 @@ export default function OverviewPage() {
 
             {/* Sağ: Sayfanın geri kalanı (Header + Content) */}
             <div className="flex flex-col flex-1 overflow-y-auto">
-                <Header />
+                <Header title="Overview" />
+
             </div>
         </div>
     )
