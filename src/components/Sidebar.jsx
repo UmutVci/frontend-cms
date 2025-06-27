@@ -1,5 +1,3 @@
-// src/components/Sidebar.jsx
-
 import { NavLink } from 'react-router-dom'
 import {
     EyeIcon,
@@ -7,20 +5,19 @@ import {
     FilmIcon,
     CalendarIcon,
     UserGroupIcon,
-    ChartBarIcon,
     CogIcon,
     LogoutIcon,
 } from '@heroicons/react/outline'
+import {UsersIcon} from "@heroicons/react/solid";
 
 export default function Sidebar() {
-    // Menü öğeleri: { path, label, Icon }
     const items = [
         { path: '/admin',    label: 'Overview',   Icon: EyeIcon },
         { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
         { path: '/admin/movies',      label: 'Movies',     Icon: FilmIcon },
         { path: '/admin/sessions',    label: 'Sessions',   Icon: CalendarIcon },
         { path: '/admin/customers',   label: 'Customers',  Icon: UserGroupIcon },
-        { path: '/reports',     label: 'Reports',    Icon: ChartBarIcon },
+        { path: '/admin/ticket-clerks',     label: 'Ticket Clerks',    Icon: UsersIcon },
     ]
 
     return (

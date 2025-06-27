@@ -1,4 +1,4 @@
-import CustomerRow from "./AdminCustomerTableRows";
+import CustomerRow from "../AdminCustomer/AdminCustomerTableRows";
 import React from "react";
 import MessagesRow from "./AdminMessagesTableRows";
 export default function AdminMessagesTable(){

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { login } from '../services/authService';
+import { login } from './authService';
 
 const useAuth = create((set) => ({
     user: JSON.parse(localStorage.getItem('user')) || null,

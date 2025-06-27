@@ -1,8 +1,8 @@
-import Header from "../../components/Header";
+import Header from "../../../components/Header";
 import React from "react";
-import ClerkSearchBookingTable from "../../components/ClerkSearchBookingTable";
-import ClerkSidebar from "../../components/ClerkSidebar";
-import SearchBar from "../../components/AdminCustomersSearchBar";
+import ClerkSearchBookingTable from "../../../components/ClerkBookings/ClerkSearchBookingTable";
+import ClerkSidebar from "../../../components/ClerkSidebar";
+import SearchBar from "../../../components/AdminCustomersSearchBar";
 
 export default function ClerkSearchBookings(){
     return (

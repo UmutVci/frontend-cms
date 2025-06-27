@@ -1,8 +1,8 @@
 // src/features/auth/pages/ClerkMoviesPage.jsx
 import React from "react";
-import ClerkSidebar from "../../components/ClerkSidebar";
-import Header from "../../components/Header";
-import Movie from "../../components/Movie";
+import ClerkSidebar from "../../../components/ClerkSidebar";
+import Header from "../../../components/Header";
+import Movie from "../../../components/ClerkMovies/Movie";
 
 export default function ClerkMoviesPage() {
     const movies = [

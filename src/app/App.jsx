@@ -1,14 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import OverviewPage from "../features/admin/OverviewPage";
-import MoviesPage from "../features/admin/MoviesPage";
-import AdminCustomers from "../features/admin/AdminCustomers";
-import LoginPage from "../features/auth/pages/LoginPage";
-import ClerkSearchBookings from "../features/clerk/ClerkSearchBookings";
-import ClerkMoviesPage from "../features/clerk/ClerkMoviesPage";
-import ClerkFeedback from "../features/clerk/ClerkFeedback";
-import ClerkSession from "../features/clerk/ClerkSession";
-import AdminMessages from "../features/admin/AdminMessages";
-import AdminSessions from "../features/admin/AdminSessions";
+import MoviesPage from "../features/admin/AdminMovies/MoviesPage";
+import AdminCustomers from "../features/admin/AdminCustomers/AdminCustomers";
+import LoginPage from "../features/auth/LoginPage";
+import ClerkSearchBookings from "../features/clerk/ClerkBookings/ClerkSearchBookings";
+import ClerkMoviesPage from "../features/clerk/ClerkMovies/ClerkMoviesPage";
+import ClerkFeedback from "../features/clerk/ClerkFeedback/ClerkFeedback";
+import ClerkSession from "../features/clerk/ClerkSession/ClerkSession";
+import AdminMessages from "../features/admin/AdminFeedbacks/AdminMessages";
+import AdminSessions from "../features/admin/AdminSessions/AdminSessions";
+import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
 import AddMovie from "../features/admin/AddMovie";
 
 
@@ -41,6 +42,7 @@ export default function App() {
                 <Route path="/clerk/sessions" element={<ClerkSession movie={movie} />}/>
                 <Route path="/admin/messages" element={<AdminMessages />}/>
                 <Route path="/admin/sessions" element={<AdminSessions/>}/>
+                <Route path="/admin/ticket-clerks" element={<AdminTicketClerk/>}/>
             </Routes>
         </BrowserRouter>
     );

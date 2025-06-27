@@ -1,4 +1,4 @@
-import axios from '../../../lib/axios'
+import axios from '../../lib/axios'
 
 export const login = async ({ email, password }) => {
     const response = await axios.post('/auth/login', { email, password })

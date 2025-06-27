@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import Sidebar from '../../components/Sidebar'
-import Header  from '../../components/Header'
-import Pagination from '../../components/Pagination'
-import SearchBar from "../../components/AdminCustomersSearchBar";
-import AdminMoviesTable from "../../components/AdminMoviesTable";
+import Sidebar from '../../../components/Sidebar'
+import Header  from '../../../components/Header'
+import Pagination from '../../../components/Pagination'
+import SearchBar from "../../../components/AdminCustomersSearchBar";
+import AdminMoviesTable from "../../../components/AdminMovies/AdminMoviesTable";
 
 export default function MoviesPage() {
     const movies = [

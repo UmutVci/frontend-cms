@@ -1,5 +1,5 @@
-import ClerkSidebar from "../../components/ClerkSidebar";
-import Header from "../../components/Header";
+import ClerkSidebar from "../../../components/ClerkSidebar";
+import Header from "../../../components/Header";
 import React, {useState} from "react";
 
 export default function ClerkFeedback(){
@@ -14,10 +14,10 @@ export default function ClerkFeedback(){
     return (
         <div className="h-screen flex font-[Poppins]">
             <ClerkSidebar />
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex-col">
                 <Header title="Feedback" />
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
-                    <div className="bg-white  w-[50%] h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
+                    <div className="bg-white  w-[75%] h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <form className="p-8" onSubmit={handleSubmit}>
                             <label className="block text-black bold">Client Name</label>
                             <input type="text"

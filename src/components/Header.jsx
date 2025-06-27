@@ -1,5 +1,5 @@
 import { SearchIcon } from '@heroicons/react/solid'
-import useAuth from "../features/auth/store/useAuth";
+import useAuth from "../features/auth/useAuth";
 
 export default function Header({title}) {
     const user = useAuth((state) => state.user);
