@@ -1,16 +1,22 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Sidebar from '../../../components/Sidebar'
 import Header  from '../../../components/Header'
 import Pagination from '../../../components/Pagination'
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import AdminMoviesTable from "../../../components/AdminMovies/AdminMoviesTable";
+import ClerkMoviesService from "../../clerk/ClerkMovies/ClerkMoviesService";
 
 export default function MoviesPage() {
-    const movies = [
-        { id: 1, name: "Inception",    imageUrl: "/inception.jpg" },
-        { id: 2, name: "Interstellar", imageUrl: "/interstellar.jpg" },
-        { id: 3, name: "Memento",      imageUrl: "/memento.jpg" },
-    ];
+    const [movies, setMovies] = useState([]);
+    useEffect(() => {
+        const fetchData = async () => {
+            ClerkMoviesService.getAll()
+                .then(data => setMovies(data))
+                .catch(error => console.log("data couldnt fetch : " + error))
+        }
+        fetchData();
+    }, []);
+
     const itemsPerPage = 6
     const pageCount    = Math.ceil(movies.length / itemsPerPage)
     const [currentPage, setCurrentPage] = useState(1)
@@ -34,7 +40,7 @@ export default function MoviesPage() {
                                 <span className="text-l">ID</span>
                             </button>
                         </div>
-                        <AdminMoviesTable/>
+                        <AdminMoviesTable movies = {movies} />
                         <div className="mt-auto">
                         <Pagination
                             currentPage={currentPage}
