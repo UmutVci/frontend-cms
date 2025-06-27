@@ -13,6 +13,8 @@ import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
 import AddMovie from "../features/admin/AdminMovies/AddMovie";
 import AdminHalls from "../features/admin/AdminHalls/AdminHalls";
 import AddHall from "../features/admin/AdminHalls/AddHall";
+import UpdateHall from "../features/admin/AdminHalls/UpdateHall";
+
 
 
 
@@ -40,6 +42,7 @@ export default function App() {
                 <Route path="/admin/movies" element={<MoviesPage />}/>
                 <Route path="/admin/addMovie" element={<AddMovie />}/>
                 <Route path="/admin/add-hall" element={<AddHall />}/>
+                <Route path="/admin/update-hall" element={<UpdateHall />}/>
                 <Route path="/clerk/bookings" element={<ClerkSearchBookings />}/>
                 <Route path="/clerk/movies" element={<ClerkMoviesPage />}/>
                 <Route path="/clerk/feedback" element={<ClerkFeedback />}/>

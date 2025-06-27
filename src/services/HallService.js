@@ -4,8 +4,6 @@ class HallService {
 
     async getAll() {
         const response = await api.get('/halls')
-        console.log('Veri:', response.data._embedded?.domainHallList);
-        console.log(Array.isArray(response));
         return response.data._embedded?.domainHallList || [];
     }
 
