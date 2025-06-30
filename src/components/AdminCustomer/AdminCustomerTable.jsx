@@ -1,11 +1,6 @@
 import React from "react";
 import CustomerRow from "./AdminCustomerTableRows";
-export default function AdminCustomerTable(){
-    const customers = [
-        { id: 1, name: 'Umut AVCI', email: 'umut.avci@study.thws.de' },
-        { id: 2, name: 'Samet AVCI', email: 'samet.avci@study.thws.de' },
-        { id: 3, name: 'Cihan Can', email: 'cihan.can@study.thws.de' },
-    ]
+export default function AdminCustomerTable({customers}){
     return (
         <div className="overflow-x-auto mt-8">
             <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
