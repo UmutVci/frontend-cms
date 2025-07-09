@@ -1,33 +1,30 @@
-import api from "../lib/axios";
-
-class SessionService {
+import api from '../lib/axios';
+class AdminTicketClerkService {
 
     async getAll() {
         const response = await api.get('/sessions')
-        console.log('Veri:', response.data._embedded?.domainHallList);
-        console.log(Array.isArray(response));
-        return response.data._embedded?.domainSessionsList || [];
+        return response.data._embedded?.domainSessionList || [];
     }
 
     async getById(id) {
         const response = await api.get(`/sessions/${id}`);
-        return response.data._embedded?.domainSessionsList || [];
+        return response.data;
     }
 
     async create(ticketClerk) {
         const response = await api.post('/sessions', ticketClerk);
-        return response.data._embedded?.domainSessionsList || [];
+        return response.data._embedded?.domainSessionList || [];
     }
 
     async update(id, updatedClerk) {
         const response = await api.put(`/sessions/${id}`, updatedClerk);
-        return response.data._embedded?.domainSessionsList || [];
+        return response.data._embedded?.domainSessionList || [];
     }
 
     async delete(id) {
         const response = await api.delete(`/sessions/${id}`);
-        return response.data._embedded?.domainSessionsList || [];
+        return response.data._embedded?.domainSessionList || [];
     }
 }
 
-export default new SessionService();
+export default new AdminTicketClerkService();

@@ -43,6 +43,8 @@ export default function AddMovieForm() {
         if(success){
             navigate("/admin/movies");
         }
+      else alert("Error while adding a new Movie!");
+
     }
 
     return (

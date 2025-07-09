@@ -9,7 +9,7 @@ class HallService {
 
     async getById(id) {
         const response = await api.get(`/halls/${id}`);
-        return response.data._embedded?.domainHallList || [];
+        return response.data;
     }
 
     async create(ticketClerk) {

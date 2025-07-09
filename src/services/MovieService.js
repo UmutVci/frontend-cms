@@ -3,14 +3,12 @@ class AdminTicketClerkService {
 
     async getAll() {
         const response = await api.get('/movies')
-        console.log('Veri:', response.data._embedded?.ticketClerkList);
-        console.log(Array.isArray(response));
         return response.data._embedded?.domainMovieList || [];
     }
 
     async getById(id) {
         const response = await api.get(`/movies/${id}`);
-        return response.data._embedded?.domainMovieList || [];
+        return response.data;
     }
 
     async create(ticketClerk) {

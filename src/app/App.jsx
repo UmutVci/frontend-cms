@@ -14,6 +14,9 @@ import AddMovie from "../features/admin/AdminMovies/AddMovie";
 import AdminHalls from "../features/admin/AdminHalls/AdminHalls";
 import AddHall from "../features/admin/AdminHalls/AddHall";
 import UpdateHall from "../features/admin/AdminHalls/UpdateHall";
+import AddSession from "../features/admin/AdminSessions/AddSession";
+import UpdateSession from "../features/admin/AdminSessions/UpdateSession";
+
 
 
 
@@ -43,14 +46,17 @@ export default function App() {
                 <Route path="/admin/addMovie" element={<AddMovie />}/>
                 <Route path="/admin/add-hall" element={<AddHall />}/>
                 <Route path="/admin/update-hall" element={<UpdateHall />}/>
+                <Route path="/admin/messages" element={<AdminMessages />}/>
+                <Route path="/admin/sessions" element={<AdminSessions/>}/>
+                <Route path="/admin/addSession" element={<AddSession />} />
+                <Route path="/admin/sessions/update/:id" element={<UpdateSession />} />
+                <Route path="/admin/ticket-clerks" element={<AdminTicketClerk/>}/>
+                <Route path="/admin/halls" element={<AdminHalls />}/>
                 <Route path="/clerk/bookings" element={<ClerkSearchBookings />}/>
                 <Route path="/clerk/movies" element={<ClerkMoviesPage />}/>
                 <Route path="/clerk/feedback" element={<ClerkFeedback />}/>
                 <Route path="/clerk/sessions" element={<ClerkSession movie={movie} />}/>
-                <Route path="/admin/messages" element={<AdminMessages />}/>
-                <Route path="/admin/sessions" element={<AdminSessions/>}/>
-                <Route path="/admin/ticket-clerks" element={<AdminTicketClerk/>}/>
-                <Route path="/admin/halls" element={<AdminHalls />}/>
+
             </Routes>
         </BrowserRouter>
     );
