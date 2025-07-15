@@ -1,66 +1,91 @@
-import React, {useEffect, useState} from 'react'
-import Sidebar from '../../../components/Sidebar'
-import Header  from '../../../components/Header'
-import Pagination from '../../../components/Pagination'
+// src/features/admin/AdminMovies/MoviesPage.jsx
+
+import React, { useEffect, useState } from 'react';
+import AdminMoviesTable from '../../../components/AdminMovies/AdminMoviesTable';
+import Pagination       from '../../../components/Pagination';
+import MoviesService    from '../../../services/MovieService';
+import { Link }         from 'react-router-dom';
 import SearchBar from "../../../components/AdminCustomersSearchBar";
-import AdminMoviesTable from "../../../components/AdminMovies/AdminMoviesTable";
-import MoviesService from "../../../services/MovieService";
+import {SearchIcon} from "@heroicons/react/solid";
 
 export default function MoviesPage() {
-    const [movies, setMovies] = useState([]);
+    const [movies, setMovies]           = useState([]);
+    const [searchTerm, setSearchTerm]   = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage                  = 6;
+
     useEffect(() => {
-        const fetchData = async () => {
-            MoviesService.getAll()
-                .then(data => setMovies(data))
-                .catch(error => console.log("data couldnt fetch : " + error))
-        }
-        fetchData();
+        MoviesService.getAll()
+            .then(data => setMovies(data))
+            .catch(err => console.error(err));
     }, []);
 
-    const handleDelete = async (id) => {
-        await MoviesService.delete(id);
-        setMovies(prev => prev.filter(m => m.id !== id));
-    };
+    // 1) Arama: id, başlık (title) veya tür (genre) alanlarında
+    const filtered = movies.filter(m => {
+        const term = searchTerm.toLowerCase();
+        return (
+            String(m.id).includes(term) ||
+            m.title.toLowerCase().includes(term) ||
+            m.genre.toLowerCase().includes(term)
+        );
+    });
 
-    const itemsPerPage = 6
-    const pageCount    = Math.ceil(movies.length / itemsPerPage)
-    const [currentPage, setCurrentPage] = useState(1)
+    // 2) Sayfalamayı filtrelenmiş listeye uygula
+    const pageCount      = Math.ceil(filtered.length / itemsPerPage);
+    const startIndex     = (currentPage - 1) * itemsPerPage;
+    const currentMovies  = filtered.slice(startIndex, startIndex + itemsPerPage);
 
     return (
-        <div className="h-screen flex font-[Poppins]">
-            <Sidebar />
-            <div className="flex-1 flex flex-col">
-                <Header title="Movies"/>
-                <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
-                    <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-                        <SearchBar />
-                        <div className="flex items-center justify-between mb-6">
-                            <a href="/admin/addMovie">
-                                <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
-                                    + Add Movie
-                                </button>
-                            </a>
-                            <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
-                                <span className="text-l text-gray-400 mr-2">Sort By:</span>
-                                <span className="text-l">ID</span>
-                            </button>
-                        </div>
+        <div className="bg-white w-full mx-3 my-4 rounded-xl p-6 overflow-auto">
+            {/* Search + Add Movie */}
+            <div className="flex flex-col md:flex-row items-center justify-between mb-6 space-y-4 md:space-y-0">
+                <form
+                    className="relative w-full md:w-1/2"
+                    onSubmit={e => e.preventDefault()}
+                >
+                    <input
+                        type="text"
+                        placeholder="Search by ID, Title or Genre..."
+                        value={searchTerm}
+                        onChange={e => {
+                            setSearchTerm(e.target.value);
+                            setCurrentPage(1);   // arama değişince 1. sayfaya dön
+                        }}
+                        className="w-full pl-4 pr-10 py-2 border rounded-full focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                    >
+                        <SearchIcon className="h-5 w-5" />
+                    </button>
+                </form>
 
-                        {/* 3. Sadece buraya onDelete prop’unu ekledik */}
-                        <AdminMoviesTable
-                            movies={movies}
-                            onDelete={handleDelete}
-                        />
+                <Link to="/admin/addMovie">
+                    <button className="bg-[#202123] text-white h-10 px-6 rounded-full">
+                        + Add Movie
+                    </button>
+                </Link>
+            </div>
 
-                        <div className="mt-auto">
-                            <Pagination
-                                currentPage={currentPage}
-                                pageCount={pageCount}
-                                onPageChange={setCurrentPage}
-                            />
-                        </div>
-                    </div>
-                </main>
+            {/* Tablo */}
+            <div className="overflow-x-auto">
+                <AdminMoviesTable
+                    movies={currentMovies}
+                    onDelete={async id => {
+                        await MoviesService.delete(id);
+                        setMovies(prev => prev.filter(m => m.id !== id));
+                    }}
+                />
+            </div>
+
+            {/* Pagination */}
+            <div className="mt-6">
+                <Pagination
+                    currentPage={currentPage}
+                    pageCount={pageCount}
+                    onPageChange={setCurrentPage}
+                />
             </div>
         </div>
     );

@@ -1,18 +1,26 @@
-import { SearchIcon } from '@heroicons/react/solid'
+import {MenuIcon, SearchIcon} from '@heroicons/react/solid'
 import useAuth from "../features/auth/useAuth";
 
-export default function Header({title}) {
+export default function Header({title, onMenuClick}) {
     const user = useAuth((state) => state.user);
 
-    return(
-        <div className="header-container flex items-center justify-between h-20 bg-white px-6 shadow-md font-bold font-[Poppins]">
+    return (
+        <div
+            className="header-container flex items-center justify-between h-20 bg-white  px-6 shadow-md font-bold font-[Poppins]">
+            <button
+                className="md:hidden p-2 mr-2"
+                onClick={onMenuClick}
+                aria-label="Toggle menu"
+            >
+                <MenuIcon className="h-6 w-6 text-gray-700"/>
+            </button>
             {/* Sol başlık */}
             <h1 className="title text-2xl font-normal text-black ml-4">{title}</h1>
 
             {/* Sağ taraf (arama, profil vs.) */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-6 ">
                 {/* Search bar with icon */}
-                <form className="relative w-48">
+                <form className="relative w-48" >
                     {/* Icon */}
                     <SearchIcon
                         className="absolute left-2 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none"/>
@@ -49,4 +57,5 @@ export default function Header({title}) {
             </div>
         </div>
     );
+
 }

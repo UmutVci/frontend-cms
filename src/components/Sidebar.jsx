@@ -31,7 +31,7 @@ export default function Sidebar() {
             </div>
 
             {/* Menü öğeleri */}
-            <nav className="flex-1 overflow-y-auto py-4">
+            <nav className="flex-1 overflow-y-auto py-4 ">
                 <ul>
                     {items.map(({ path, label, Icon }) => (
                         <li key={path}>

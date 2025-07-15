@@ -4,24 +4,24 @@ import MoviesRow from "./AdminMoviesTableRows";
 export default function AdminMoviesTable({movies, onDelete}){
 
     return (
-        <div className="overflow-x-auto mt-8">
-            <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
-                <thead className="bg-gray-50 text-gray-700 text-sm font-semibold">
+        <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse divide-y divide-gray-200 text-sm text-gray-800">
+                <thead className="bg-gray-100">
                 <tr>
-                    <th className="px-4 py-2 text-center">Movie ID</th>
-                    <th className="px-4 py-2 text-center">Movie Name</th>
+                    <th className="px-4 py-2 text-center">ID</th>
+                    <th className="px-4 py-2 text-center">Title</th>
                     <th className="px-4 py-2 text-center">Genre</th>
-                    <th className="px-4 py-2 text-center">Duration(mn)</th>
+                    <th className="px-4 py-2 text-center">Duration</th>
                     <th className="px-4 py-2 text-center">Price</th>
-                    <th className="px-4 py-2 text-center"></th>
+                    <th className="px-4 py-2 text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {movies.map(m => (
+                {movies.map(movie => (
                     <MoviesRow
-                        key={m.id}
-                        movie={m}
-                        onDelete={onDelete}    // burada geçir
+                        key={movie.id}
+                        movie={movie}
+                        onDelete={onDelete}
                     />
                 ))}
                 </tbody>
