@@ -1,7 +1,7 @@
 import React from "react";
 import MoviesRow from "./AdminMoviesTableRows";
 
-export default function AdminMoviesTable({movies}){
+export default function AdminMoviesTable({movies, onDelete}){
 
     return (
         <div className="overflow-x-auto mt-8">
@@ -16,9 +16,13 @@ export default function AdminMoviesTable({movies}){
                     <th className="px-4 py-2 text-center"></th>
                 </tr>
                 </thead>
-                <tbody className="bg-white">
-                {movies.map((movie) => (
-                    <MoviesRow key={movie.id} movie={movie} />
+                <tbody>
+                {movies.map(m => (
+                    <MoviesRow
+                        key={m.id}
+                        movie={m}
+                        onDelete={onDelete}    // burada geçir
+                    />
                 ))}
                 </tbody>
             </table>

@@ -15,7 +15,12 @@ export default function MoviesPage() {
                 .catch(error => console.log("data couldnt fetch : " + error))
         }
         fetchData();
-    });
+    }, []);
+
+    const handleDelete = async (id) => {
+        await MoviesService.delete(id);
+        setMovies(prev => prev.filter(m => m.id !== id));
+    };
 
     const itemsPerPage = 6
     const pageCount    = Math.ceil(movies.length / itemsPerPage)
@@ -24,30 +29,36 @@ export default function MoviesPage() {
     return (
         <div className="h-screen flex font-[Poppins]">
             <Sidebar />
-
             <div className="flex-1 flex flex-col">
                 <Header title="Movies"/>
-
                 <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <SearchBar />
                         <div className="flex items-center justify-between mb-6">
-                            <a href="/admin/addMovie"><button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
-                                <span className="text-l">+ Add Movie</span>
-                            </button></a>
+                            <a href="/admin/addMovie">
+                                <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
+                                    + Add Movie
+                                </button>
+                            </a>
                             <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
                                 <span className="text-l text-gray-400 mr-2">Sort By:</span>
                                 <span className="text-l">ID</span>
                             </button>
                         </div>
-                        <AdminMoviesTable movies = {movies} />
-                        <div className="mt-auto">
-                        <Pagination
-                            currentPage={currentPage}
-                            pageCount={pageCount}
-                            onPageChange={setCurrentPage}
+
+                        {/* 3. Sadece buraya onDelete prop’unu ekledik */}
+                        <AdminMoviesTable
+                            movies={movies}
+                            onDelete={handleDelete}
                         />
-                    </div>
+
+                        <div className="mt-auto">
+                            <Pagination
+                                currentPage={currentPage}
+                                pageCount={pageCount}
+                                onPageChange={setCurrentPage}
+                            />
+                        </div>
                     </div>
                 </main>
             </div>
