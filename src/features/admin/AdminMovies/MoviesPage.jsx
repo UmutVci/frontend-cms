@@ -1,11 +1,8 @@
-// src/features/admin/AdminMovies/MoviesPage.jsx
-
 import React, { useEffect, useState } from 'react';
 import AdminMoviesTable from '../../../components/AdminMovies/AdminMoviesTable';
 import Pagination       from '../../../components/Pagination';
 import MoviesService    from '../../../services/MovieService';
 import { Link }         from 'react-router-dom';
-import SearchBar from "../../../components/AdminCustomersSearchBar";
 import {SearchIcon} from "@heroicons/react/solid";
 
 export default function MoviesPage() {
@@ -20,7 +17,6 @@ export default function MoviesPage() {
             .catch(err => console.error(err));
     }, []);
 
-    // 1) Arama: id, başlık (title) veya tür (genre) alanlarında
     const filtered = movies.filter(m => {
         const term = searchTerm.toLowerCase();
         return (
@@ -30,7 +26,6 @@ export default function MoviesPage() {
         );
     });
 
-    // 2) Sayfalamayı filtrelenmiş listeye uygula
     const pageCount      = Math.ceil(filtered.length / itemsPerPage);
     const startIndex     = (currentPage - 1) * itemsPerPage;
     const currentMovies  = filtered.slice(startIndex, startIndex + itemsPerPage);
@@ -49,7 +44,7 @@ export default function MoviesPage() {
                         value={searchTerm}
                         onChange={e => {
                             setSearchTerm(e.target.value);
-                            setCurrentPage(1);   // arama değişince 1. sayfaya dön
+                            setCurrentPage(1);
                         }}
                         className="w-full pl-4 pr-10 py-2 border rounded-full focus:outline-none"
                     />
@@ -79,7 +74,6 @@ export default function MoviesPage() {
                 />
             </div>
 
-            {/* Pagination */}
             <div className="mt-6">
                 <Pagination
                     currentPage={currentPage}

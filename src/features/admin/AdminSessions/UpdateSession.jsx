@@ -54,18 +54,19 @@ export default function UpdateSession() {
             startTime,
             movie: movieId,
             hall:  hallId,
-            price: price,
+            price: price
         };
-        const ok = await SessionService.update(id, payload);
-        if (ok) navigate("/admin/sessions");
-        else alert("Güncelleme sırasında hata oldu.");
+
+        try {
+            await SessionService.update(id, payload);
+            navigate('/admin/sessions');
+        } catch (err) {
+            console.error('Update error:', err);
+            alert('Güncelleme sırasında hata oldu: ' + (err.response?.data?.message || err.message));
+        }
     };
 
     return (
-        <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <div className="flex flex-col flex-1 overflow-y-auto">
-                <Header title="Update Session" />
                 <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-[75%] mx-auto my-4 rounded-xl p-6 overflow-auto">
                         <form className="space-y-6" onSubmit={handleUpdate}>
@@ -135,7 +136,5 @@ export default function UpdateSession() {
                         </form>
                     </div>
                 </main>
-            </div>
-        </div>
     );
 }
