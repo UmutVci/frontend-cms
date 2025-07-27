@@ -1,36 +1,52 @@
 import api from '../lib/axios';
 
 class SessionService {
-    // GET /sessions → [ { id, movieId, hallId, startTime, … }, … ]
+    // Tüm oturumları getir
     async getAll() {
         const response = await api.get('/sessions');
-        // eğer HAL+Spring HATEOAS kullanılmıyorsa direkt response.data olabilir
         return response.data._embedded?.domainSessionList || [];
     }
 
-    // GET /sessions/:id → tek bir session objesi
+    // ID'ye göre oturumu getir
     async getById(id) {
         const response = await api.get(`/sessions/${id}`);
         return response.data;
     }
 
-    // POST /sessions → sunucudan yeni kaydı dönüyorsa
+    // Yeni oturum oluştur
     async create(session) {
         const response = await api.post('/sessions', session);
-        // eğer tek bir obje dönüyorsa:
         return response.data;
     }
 
-    // PUT /sessions/:id → güncellenmiş obje
-    async update(id, session) {
-        const response = await api.put(`/sessions/${id}`, session);
+    // Oturumu güncelle
+    async update(id, updatedSession) {
+        const response = await api.put(`/sessions/${id}`, updatedSession);
         return response.data;
     }
 
-    // DELETE /sessions/:id → silindikten sonra genelde { } veya 204 gelir
+    // Oturumu sil
     async delete(id) {
         const response = await api.delete(`/sessions/${id}`);
-        return response.status === 204;
+        return response.data;
+    }
+
+    // Belirli bir salonun tüm oturumlarını getir
+    async getAllSessionsFromHall(hallId) {
+        const response = await api.get(`/sessions/hall/${hallId}`);
+        return response.data._embedded?.domainSessionList || [];
+    }
+
+    // Belirli bir filmin tüm oturumlarını getir
+    async getAllSessionsFromMovie(movieId) {
+        const response = await api.get(`/sessions/movie/${movieId}`);
+        return response.data._embedded?.domainSessionList || [];
+    }
+
+    // Belirli bir oturumun bitiş zamanını getir
+    async endTimeBySessionId(id) {
+        const response = await api.get(`/sessions/${id}/session/end`);
+        return response.data; // LocalDateTime string olarak gelir (örneğin: "2025-07-27T21:00:00")
     }
 }
 

@@ -19,6 +19,8 @@ import ClerkSearchBookings from '../features/clerk/ClerkBookings/ClerkSearchBook
 import ClerkMoviesPage     from '../features/clerk/ClerkMovies/ClerkMoviesPage';
 import ClerkFeedback       from '../features/clerk/ClerkFeedback/ClerkFeedback';
 import ClerkSession        from '../features/clerk/ClerkSession/ClerkSession';
+import ClerkSettings from "../features/clerk/ClerkSettings/ClerkSettings";
+import MovieSessions from "../features/clerk/ClerkMovies/MovieSessions";
 
 export default function AppLayout() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -40,6 +42,7 @@ export default function AppLayout() {
         '/clerk/movies':        'Movies',
         '/clerk/feedback':      'Feedback',
         '/clerk/sessions':      'Sessions',
+        'clerk/settings': 'Settings'
     };
 
     let title = titleMap[pathname] || '';
@@ -93,11 +96,13 @@ export default function AppLayout() {
                             <Route path="sessions/update/:id" element={<UpdateSession />} />
                             <Route path="messages" element={<AdminMessages />} />
                             <Route path="ticket-clerks" element={<AdminTicketClerk />} />
+                            <Route path="settings/:id" element={<ClerkSettings />} />
 
                             <Route path="bookings" element={<ClerkSearchBookings />} />
                             <Route path="movies"   element={<ClerkMoviesPage  />} />
                             <Route path="feedback" element={<ClerkFeedback     />} />
                             <Route path="sessions" element={<ClerkSession      />} />
+                            <Route path="/movies/:movieId/sessions" element={<MovieSessions />} />
                         </Routes>
                     </div>
                 </main>
