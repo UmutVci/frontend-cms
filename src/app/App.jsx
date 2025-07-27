@@ -22,6 +22,7 @@ import ClerkSearchBookings from '../features/clerk/ClerkBookings/ClerkSearchBook
 import ClerkMoviesPage from '../features/clerk/ClerkMovies/ClerkMoviesPage';
 import ClerkFeedback from '../features/clerk/ClerkFeedback/ClerkFeedback';
 import ClerkSession from '../features/clerk/ClerkSession/ClerkSession';
+import MovieSessions from "../features/clerk/ClerkMovies/MovieSessions";
 
 function App() {
     return (
@@ -53,6 +54,7 @@ function App() {
                 <Route path="movies" element={<ClerkMoviesPage />} />
                 <Route path="feedback" element={<ClerkFeedback />} />
                 <Route path="sessions" element={<ClerkSession />} />
+                <Route path="movies/:id/sessions" element={<MovieSessions />}/>
             </Route>
 
         </Routes>

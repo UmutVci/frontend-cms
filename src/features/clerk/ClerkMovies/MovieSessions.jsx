@@ -1,38 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import SessionService from "../../../services/SessionService";
-import ClerkSidebar from "../../../components/ClerkSidebar";
-import Header from "../../../components/Header";
-import SearchBar from "../../../components/AdminCustomersSearchBar";
-import ClerkSearchBookingTable from "../../../components/ClerkBookings/ClerkSearchBookingTable";
+import {useNavigate, useParams} from "react-router-dom";
+import api from "../../../lib/axios";
 
 export default function MovieSessions() {
-    const { movieId } = useParams();
+    const { id } = useParams();
     const [sessions, setSessions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchSessions = async () => {
-            try {
-                const data = await SessionService.getAllSessionsFromMovie(movieId);
-                setSessions(data);
-            } catch (err) {
-                setError("Oturumlar yüklenirken bir hata oluştu.");
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchSessions();
-    }, [movieId]);
 
     const handleSessionClick = (sessionId) => {
         console.log("Seçilen oturum ID:", sessionId);
 
         // Örneğin satın alma işlemi burada yapılmış varsayılıyor:
         // await SomeService.buyTicket(sessionId);
+        navigate('/clerk/movies');
 
         alert("🎉 Purchase successful");
     };
@@ -43,9 +26,7 @@ export default function MovieSessions() {
 
     return (
         <div className="h-screen flex font-[Poppins]">
-            <ClerkSidebar />
             <div className="flex-1 flex flex-col">
-                <Header title="Bookings" />
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <ul className="space-y-2">

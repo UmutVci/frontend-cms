@@ -3,11 +3,15 @@ import api from "../lib/axios";
 class FeedbackService {
 
     async getAll() {
-        const response = await api.get('/feedbacks')
-        console.log('Veri:', response.data._embedded?.domainHallList);
-        console.log(Array.isArray(response));
+        const response = await api.get('/feedbacks');
+
+        // HATEOAS formatında embed edilen listeyi kontrol et
+        console.log('Veri:', response.data._embedded?.feedbackList);
+        console.log('feedbackList bir dizi mi?', Array.isArray(response.data._embedded?.feedbackList));
+
         return response.data._embedded?.feedbackList || [];
     }
+
 
     async getById(id) {
         const response = await api.get(`/feedbacks/${id}`);
