@@ -22,7 +22,7 @@ import ClerkSearchBookings from '../features/clerk/ClerkBookings/ClerkSearchBook
 import ClerkMoviesPage from '../features/clerk/ClerkMovies/ClerkMoviesPage';
 import ClerkFeedback from '../features/clerk/ClerkFeedback/ClerkFeedback';
 import ClerkSession from '../features/clerk/ClerkSession/ClerkSession';
-import MovieSessions from "../features/clerk/ClerkMovies/MovieSessions";
+import UpdateMovie from "../features/admin/AdminMovies/UpdateMovie";
 
 function App() {
     return (
@@ -37,6 +37,7 @@ function App() {
                 <Route path="customers" element={<AdminCustomers />} />
                 <Route path="movies" element={<MoviesPage />} />
                 <Route path="addMovie" element={<AddMovie />} />
+                <Route path="update-movie/:id" element={<UpdateMovie />} />
                 <Route path="halls" element={<AdminHalls />} />
                 <Route path="add-hall" element={<AddHall />} />
                 <Route path="update-hall" element={<UpdateHall />} />
@@ -54,7 +55,6 @@ function App() {
                 <Route path="movies" element={<ClerkMoviesPage />} />
                 <Route path="feedback" element={<ClerkFeedback />} />
                 <Route path="sessions" element={<ClerkSession />} />
-                <Route path="movies/:id/sessions" element={<MovieSessions />}/>
             </Route>
 
         </Routes>

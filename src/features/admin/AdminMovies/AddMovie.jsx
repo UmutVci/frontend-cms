@@ -1,7 +1,6 @@
-import Sidebar from "../AdminLayout/Sidebar";
-import Header from "../AdminLayout/Header";
+
 import React, { useEffect, useState } from "react";
-import ClerkMoviesService from "../../../services/MovieService";
+import MovieService from "../../../services/MovieService";
 import {useNavigate} from "react-router-dom";
 
 export default function AddMovieForm() {
@@ -15,7 +14,7 @@ export default function AddMovieForm() {
     const handleInput = async (e) => {
         e.preventDefault()
         const thismovie = {title: movie, genre: genre, duration: duration, price: price, imgUrl: img}
-        const success = await ClerkMoviesService.create(thismovie)
+        const success = await MovieService.create(thismovie)
         if(success){
             navigate("/admin/movies");
         }

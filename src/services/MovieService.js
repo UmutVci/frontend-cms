@@ -1,8 +1,9 @@
 import api from '../lib/axios';
-class AdminTicketClerkService {
+
+class MovieService {
 
     async getAll() {
-        const response = await api.get('/movies')
+        const response = await api.get('/movies');
         return response.data._embedded?.domainMovieList || [];
     }
 
@@ -11,20 +12,34 @@ class AdminTicketClerkService {
         return response.data;
     }
 
-    async create(ticketClerk) {
-        const response = await api.post('/movies', ticketClerk);
-        return response.data._embedded?.domainMovieList || [];
+    async create(movie) {
+        try {
+            const response = await api.post('/movies', movie);
+            return response.status === 201 || response.status === 200;
+        } catch (error) {
+            console.error("Film oluşturulurken hata:", error);
+            return false;
+        }
     }
 
-    async update(id, updatedClerk) {
-        const response = await api.put(`/movies/${id}`, updatedClerk);
-        return response.data._embedded?.domainMovieList || [];
+    async update(id, updatedMovie) {
+        try {
+            const response = await api.put(`/movies/${id}`, updatedMovie);
+            return response.status === 200 || response.status === 204;
+        } catch (error) {
+            console.error("Update error:", error.response?.data || error.message);
+            return false;
+        }
     }
 
     async delete(id) {
-        const response = await api.delete(`/movies/${id}`);
-        return response.data._embedded?.domainMovieList || [];
+        try {
+            const response = await api.delete(`/movies/${id}`);
+            return response.status === 204;
+        } catch (error) {
+            console.error("Film silinemedi:", error);
+        }
     }
 }
 
-export default new AdminTicketClerkService();
+export default new MovieService();

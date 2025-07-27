@@ -24,10 +24,6 @@ export default function UpdateHall() {
     }
 
     return (
-        <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <div className="flex flex-col flex-1 overflow-y-auto">
-                <Header title="Add Hall"/>
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-[75%] h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <form className="p-8 space-y-4" onSubmit={handleInput}>
@@ -64,8 +60,5 @@ export default function UpdateHall() {
                         </form>
                     </div>
                 </main>
-            </div>
-        </div>
-
     );
 }

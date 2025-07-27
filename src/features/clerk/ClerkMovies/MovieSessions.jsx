@@ -11,17 +11,14 @@ export default function MovieSessions() {
 
 
     const handleSessionClick = (sessionId) => {
-        console.log("Seçilen oturum ID:", sessionId);
-
-        // Örneğin satın alma işlemi burada yapılmış varsayılıyor:
-        // await SomeService.buyTicket(sessionId);
+        console.log("Picked Session:", sessionId);
         navigate('/clerk/movies');
 
         alert("🎉 Purchase successful");
     };
 
 
-    if (loading) return <div className="p-4">Yükleniyor...</div>;
+    if (loading) return <div className="p-4">Loading...</div>;
     if (error) return <div className="p-4 text-red-600">{error}</div>;
 
     return (

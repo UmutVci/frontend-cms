@@ -1,30 +1,38 @@
 import api from "../lib/axios";
 
 class HallService {
-
     async getAll() {
-        const response = await api.get('/halls')
+        const response = await api.get("/halls");
         return response.data._embedded?.domainHallList || [];
     }
 
-    async getById(id) {
-        const response = await api.get(`/halls/${id}`);
-        return response.data;
+    async create(hall) {
+        try {
+            const response = await api.post("/halls", hall);
+            return response.status === 201 || response.status === 200;
+        } catch (error) {
+            console.error("Hall oluşturulurken hata:", error);
+            return false;
+        }
     }
 
-    async create(ticketClerk) {
-        const response = await api.post('/halls', ticketClerk);
-        return response.data._embedded?.domainHallList || [];
-    }
-
-    async update(id, updatedClerk) {
-        const response = await api.put(`/halls/${id}`, updatedClerk);
-        return response.data._embedded?.domainHallList || [];
+    async update(id, hall) {
+        try {
+            const response = await api.put(`/halls/${id}`, hall);
+            return response.status === 200;
+        } catch (error) {
+            console.error("Hall güncellenemedi:", error);
+            return false;
+        }
     }
 
     async delete(id) {
-        const response = await api.delete(`/halls/${id}`);
-        return response.data._embedded?.domainHallList || [];
+        try {
+            const response = await api.delete(`/halls/${id}`);
+            return response.status === 204;
+        } catch (error) {
+            console.error("Hall silinemedi:", error);
+        }
     }
 }
 

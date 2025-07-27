@@ -11,12 +11,16 @@ export default function AdminHalls() {
 
     useEffect(() => {
         const fetchData = async () => {
-            HallService.getAll()
-                .then(data => setHalls(data))
-                .catch(error => console.log("Data couldnt fetch :" + error))
-        }
-        fetchData()
-    });
+            try {
+                const data = await HallService.getAll();
+                setHalls(data);
+            } catch (error) {
+                console.log("Data coldn't fetch", error);
+            }
+        };
+        fetchData();
+    }, []);
+
 
 
     const itemsPerPage = 6
