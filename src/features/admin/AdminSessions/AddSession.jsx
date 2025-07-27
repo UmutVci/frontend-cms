@@ -29,21 +29,20 @@ export default function AddSession() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const payload = {
-            startTime,                      // "2025-07-15T18:30"
+            startTime,
             movie: movieId,
             hall: hallId,
             price: price,
         };
-        const ok = await SessionService.create(payload);
-        if (ok) navigate("/admin/sessions");
-        else alert("Error while adding a new Session!");
+        try {
+            await SessionService.create(payload);
+            navigate("/admin/sessions");
+        } catch (error) {
+            alert("Error while adding a new Session!");
+        }
     };
 
     return (
-        <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <div className="flex flex-col flex-1 overflow-y-auto">
-                <Header title="Add Session" />
                 <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-[75%] mx-auto my-4 rounded-xl p-6">
                         <form className="space-y-6" onSubmit={handleSubmit}>
@@ -109,7 +108,5 @@ export default function AddSession() {
                         </form>
                     </div>
                 </main>
-            </div>
-        </div>
     );
 }

@@ -13,10 +13,14 @@ class SessionService {
         return response.data;
     }
 
-    // Yeni oturum oluştur
     async create(session) {
-        const response = await api.post('/sessions', session);
-        return response.data;
+        try {
+            const response = await api.post('/sessions', session);
+            return response.data;
+        } catch (err) {
+            // Opsiyonel: console.log(err.response?.data || err);
+            throw err; // Hata varsa dışarı fırlat
+        }
     }
 
     // Oturumu güncelle

@@ -7,13 +7,12 @@ export default function AddMovieForm() {
     const [movie, setMovie] = useState("");
     const [genre, setGenre] = useState("");
     const [duration, setDuration] = useState("");
-    const [price, setPrice] = useState("");
     const [img, setImg] = useState("");
     const navigate = useNavigate();
 
     const handleInput = async (e) => {
         e.preventDefault()
-        const thismovie = {title: movie, genre: genre, duration: duration, price: price, imgUrl: img}
+        const thismovie = {title: movie, genre: genre, duration: duration, imgUrl: img}
         const success = await MovieService.create(thismovie)
         if(success){
             navigate("/admin/movies");
@@ -55,17 +54,6 @@ export default function AddMovieForm() {
                         type="text"
                         value={duration}
                         onChange={e => setDuration(e.target.value)}
-                        className="w-full border-2 border-gray-300 rounded-md h-8 px-2"
-                        required
-                    />
-                </div>
-
-                <div>
-                    <label className="block font-semibold mb-1">Price</label>
-                    <input
-                        type="text"
-                        value={price}
-                        onChange={e => setPrice(e.target.value)}
                         className="w-full border-2 border-gray-300 rounded-md h-8 px-2"
                         required
                     />

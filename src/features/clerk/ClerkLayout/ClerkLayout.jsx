@@ -1,4 +1,3 @@
-// ClerkLayout.jsx
 import React, { useState } from 'react';
 import ClerkHeader from './ClerkHeader';
 import ClerkSidebar from './ClerkSidebar';
@@ -9,10 +8,23 @@ export default function ClerkLayout() {
 
     return (
         <div className="flex min-h-screen w-full min-w-0">
-            {/* Sidebar - solda sabit */}
-            <div className="w-64 bg-[#400505] flex-shrink-0 min-w-0">
+            {/* Sidebar - mobilde kapalı, md ve üstünde açık */}
+            <div className={`
+                fixed inset-y-0 left-0 z-40 w-64 bg-[#400505] transition-transform duration-300
+                ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+                md:relative md:translate-x-0 md:flex-shrink-0 min-w-0
+            `}>
                 <ClerkSidebar onClose={() => setIsSidebarOpen(false)} />
             </div>
+
+            {/* Overlay sadece mobilde ve sidebar açıkken */}
+            {isSidebarOpen && (
+                <div
+                    className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden"
+                    onClick={() => setIsSidebarOpen(false)}
+                />
+            )}
+
             {/* Main content - sağda */}
             <div className="flex flex-col w-full min-w-0">
                 <ClerkHeader onMenuClick={() => setIsSidebarOpen(true)} />

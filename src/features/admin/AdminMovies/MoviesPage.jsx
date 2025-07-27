@@ -32,35 +32,40 @@ export default function MoviesPage() {
 
     return (
         <div className="bg-white w-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-            {/* Search + Add Movie */}
-            <div className="flex flex-col md:flex-row items-center justify-between mb-6 space-y-4 md:space-y-0">
+            {/* Add Movie (sol) + Search Bar (ortada) */}
+            <div className="flex flex-col md:flex-row items-center md:justify-between mb-6 gap-4">
+                {/* Add Movie butonu: SOLDA, büyütme için md:justify-start kullanıyoruz */}
+                <div className="w-full md:w-auto flex justify-start">
+                    <Link to="/admin/addMovie">
+                        <button className="bg-[#202123] text-white h-10 px-6 rounded-full w-full md:w-auto">
+                            + Add Movie
+                        </button>
+                    </Link>
+                </div>
+                {/* Search bar: ORTADA */}
                 <form
-                    className="relative w-full md:w-1/2"
+                    className="flex-1 flex justify-center"
                     onSubmit={e => e.preventDefault()}
                 >
-                    <input
-                        type="text"
-                        placeholder="Search by ID, Title or Genre..."
-                        value={searchTerm}
-                        onChange={e => {
-                            setSearchTerm(e.target.value);
-                            setCurrentPage(1);
-                        }}
-                        className="w-full pl-4 pr-10 py-2 border rounded-full focus:outline-none"
-                    />
-                    <button
-                        type="submit"
-                        className="absolute right-2 top-1/2 transform -translate-y-1/2"
-                    >
-                        <SearchIcon className="h-5 w-5" />
-                    </button>
+                    <div className="relative w-full max-w-md">
+                        <input
+                            type="text"
+                            placeholder="Search by ID, Title or Genre..."
+                            value={searchTerm}
+                            onChange={e => {
+                                setSearchTerm(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            className="w-full pl-4 pr-10 py-2 border rounded-full focus:outline-none"
+                        />
+                        <button
+                            type="submit"
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                        >
+                            <SearchIcon className="h-5 w-5" />
+                        </button>
+                    </div>
                 </form>
-
-                <Link to="/admin/addMovie">
-                    <button className="bg-[#202123] text-white h-10 px-6 rounded-full">
-                        + Add Movie
-                    </button>
-                </Link>
             </div>
 
             {/* Tablo */}
@@ -82,5 +87,6 @@ export default function MoviesPage() {
                 />
             </div>
         </div>
+
     );
 }

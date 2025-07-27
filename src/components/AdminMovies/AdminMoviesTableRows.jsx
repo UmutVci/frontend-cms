@@ -21,7 +21,6 @@ const MoviesRow = ({ movie, onDelete }) => {
             <td className="px-4 py-3">{movie.title}</td>
             <td className="px-4 py-3">{movie.genre}</td>
             <td className="px-4 py-3">{movie.duration}</td>
-            <td className="px-4 py-3">{movie.price}</td>
             <td className="px-4 py-3 flex justify-center space-x-4">
                 <button onClick={handleUpdate}>
                     <PencilAltIcon className="w-5 h-5  hover:text-blue-800" />

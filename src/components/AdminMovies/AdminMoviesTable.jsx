@@ -12,7 +12,6 @@ export default function AdminMoviesTable({movies, onDelete}){
                     <th className="px-4 py-2 text-center">Title</th>
                     <th className="px-4 py-2 text-center">Genre</th>
                     <th className="px-4 py-2 text-center">Duration</th>
-                    <th className="px-4 py-2 text-center">Price</th>
                     <th className="px-4 py-2 text-center">Actions</th>
                 </tr>
                 </thead>

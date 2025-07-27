@@ -12,6 +12,7 @@ export default function AdminSessionsTable({ sessions, hallsMap, moviesMap}) {
                     <th className="px-4 py-2 text-center">Movie</th>
                     <th className="px-4 py-2 text-center">Hall</th>
                     <th className="px-4 py-2 text-center">Price</th>
+                    <th className="px-4 py-2 text-center">Actions</th>
                     <th className="px-4 py-2 text-center"></th>
                 </tr>
                 </thead>
