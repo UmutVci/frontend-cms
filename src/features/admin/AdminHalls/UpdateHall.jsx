@@ -1,5 +1,5 @@
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../AdminLayout/Sidebar";
+import Header from "../AdminLayout/Header";
 import React, { useState } from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import HallService from "../../../services/HallService";

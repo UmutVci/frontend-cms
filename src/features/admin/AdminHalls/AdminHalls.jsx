@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../AdminLayout/Sidebar";
+import Header from "../AdminLayout/Header";
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import Pagination from "../../../components/Pagination";
 import HallService from "../../../services/HallService";
@@ -24,11 +24,6 @@ export default function AdminHalls() {
     const [currentPage, setCurrentPage] = useState(1)
 
     return (
-        <div className="h-screen flex font-[Poppins]">
-            <Sidebar />
-
-            <div className="flex-1 flex flex-col">
-                <Header title="Halls" />
 
                 <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
@@ -55,7 +50,5 @@ export default function AdminHalls() {
                         </div>
                     </div>
                 </main>
-            </div>
-        </div>
     );
 }

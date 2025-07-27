@@ -1,7 +1,5 @@
 // src/features/auth/pages/ClerkMoviesPage.jsx
 import React, {useEffect, useState} from "react";
-import ClerkSidebar from "../../../components/ClerkSidebar";
-import Header from "../../../components/Header";
 import Movie from "../../../components/ClerkMovies/Movie";
 import ClerkMoviesService from "../../../services/MovieService";
 
@@ -18,12 +16,6 @@ export default function ClerkMoviesPage() {
     }, []);
 
     return (
-        <div className="h-screen flex">
-            <ClerkSidebar />
-
-            <div className="flex-1 flex flex-col">
-                <Header title="Movies"/>
-
                 <main className="flex-1 overflow-auto bg-[#D9D9D9] p-6">
                     <div className="bg-white rounded-xl p-6 grid grid-cols-4 gap-6">
                         {movies.map((m) => (
@@ -33,7 +25,5 @@ export default function ClerkMoviesPage() {
                         ))}
                     </div>
                 </main>
-            </div>
-        </div>
     );
 }

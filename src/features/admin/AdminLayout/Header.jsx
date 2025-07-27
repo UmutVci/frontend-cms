@@ -1,8 +1,8 @@
 import {MenuIcon, SearchIcon} from '@heroicons/react/solid'
-import useAuth from "../features/auth/useAuth";
+import useAuth from "../../auth/useAuth";
 
 export default function Header({title, onMenuClick}) {
-    const user = useAuth((state) => state.user);
+    const user = useAuth((state) => state.user) || {};
 
     return (
         <div
@@ -39,7 +39,7 @@ export default function Header({title, onMenuClick}) {
                 />
 
                 {/* Username */}
-                <span className="text-black font-medium text-md">{user.name}</span>
+                <span className="text-black font-medium text-md">{user?.name || "Loading..."}</span>
 
                 {/* Dropdown icon */}
                 <svg

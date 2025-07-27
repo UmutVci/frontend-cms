@@ -1,5 +1,5 @@
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../AdminLayout/Sidebar";
+import Header from "../AdminLayout/Header";
 import React, { useEffect, useState } from "react";
 import ClerkMoviesService from "../../../services/MovieService";
 import {useNavigate} from "react-router-dom";

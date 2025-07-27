@@ -10,7 +10,6 @@ export default function AdminTicketClerksTable({clerks}){
                     <th className="px-4 py-2 text-center">Ticker Clerk ID</th>
                     <th className="px-4 py-2 text-center">Ticket Clerk Email</th>
                     <th className="px-4 py-2 text-center">Ticket Clerk Password</th>
-                    <th className="px-4 py-2 text-center" aria-valuemax="20">Hall</th>
                     <th className="px-4 py-2 text-center"></th>
                 </tr>
                 </thead>

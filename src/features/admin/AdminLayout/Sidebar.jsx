@@ -1,7 +1,7 @@
-// src/components/Sidebar.jsx
-
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import {
+    EyeIcon,
     InboxIcon,
     FilmIcon,
     CalendarIcon,
@@ -9,18 +9,25 @@ import {
     CogIcon,
     LogoutIcon,
 } from '@heroicons/react/outline'
-//TO DO : EMOJILERIN DEGISMESI LAZIM
-export default function ClerkSidebar() {
+import {UsersIcon, ViewBoardsIcon} from "@heroicons/react/solid";
+
+export default function Sidebar() {
     const items = [
-        { path: '/clerk/movies',    label: 'Movies',   Icon: FilmIcon },
-       /* { path: '/seat-selection',    label: 'Seat Selection',   Icon: InboxIcon },
-        { path: '/customer-subscription',      label: 'Customer Subscription',     Icon: FilmIcon },*/
-        { path: '/clerk/feedback',    label: 'Feedback',   Icon: CalendarIcon },
-        { path: '/clerk/bookings',   label: 'Search Booking',  Icon: UserGroupIcon },
+        { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
+        { path: '/admin/movies',      label: 'Movies',     Icon: FilmIcon },
+        { path: '/admin/sessions',    label: 'Sessions',   Icon: CalendarIcon },
+        { path: '/admin/halls',     label: 'Halls',    Icon: ViewBoardsIcon },
+        { path: '/admin/customers',   label: 'Customers',  Icon: UserGroupIcon },
+        { path: '/admin/ticket-clerks',     label: 'Ticket Clerks',    Icon: UsersIcon },
     ]
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        navigate('/');
+    };
 
     return (
-        <aside className="flex flex-col w-64 h-screen bg-[#400505] text-[#8C8C8D]">
+        <aside className="flex flex-col w-64 h-screen bg-[#202123] text-[#8C8C8D]">
             {/* Logo / Başlık */}
             <div className=" flex flex-col items-center justify-center border-b my-3 border-gray-700">
                 <span className="text-lg font-semibold">Cinema Management</span>
@@ -30,7 +37,7 @@ export default function ClerkSidebar() {
             </div>
 
             {/* Menü öğeleri */}
-            <nav className="flex-1 overflow-y-auto py-4">
+            <nav className="flex-1 overflow-y-auto py-4 ">
                 <ul>
                     {items.map(({ path, label, Icon }) => (
                         <li key={path}>
@@ -58,13 +65,13 @@ export default function ClerkSidebar() {
                     <CogIcon className="h-5 w-5" />
                     <span>Settings</span>
                 </NavLink>
-                <NavLink
-                    to="/logout"
-                    className="mt-2 flex items-center px-4 py-2 space-x-3 text-gray-400 hover:bg-gray-800 hover:text-white rounded transition-colors"
+                <button
+                    onClick={handleLogout}
+                    className="mt-2 flex items-center px-4 py-2 space-x-3 text-gray-400 hover:bg-gray-800 hover:text-white rounded transition-colors w-full"
                 >
                     <LogoutIcon className="h-5 w-5" />
                     <span>Log out</span>
-                </NavLink>
+                </button>
             </div>
         </aside>
     )

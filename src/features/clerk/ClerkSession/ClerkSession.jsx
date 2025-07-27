@@ -1,6 +1,6 @@
-import Header from "../../../components/Header";
+import Header from "../../admin/AdminLayout/Header";
 import React from "react";
-import ClerkSidebar from "../../../components/ClerkSidebar";
+import ClerkSidebar from "../ClerkLayout/ClerkSidebar";
 
 export default function ClerkSession({movie}){
     return (

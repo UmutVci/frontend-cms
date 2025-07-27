@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
 import SessionService from "../../../services/SessionService";
 import api from "../../../lib/axios";
 
@@ -18,19 +16,15 @@ export default function UpdateSession() {
     const [hallsList,  setHallsList]  = useState([]);
 
     useEffect(() => {
-        // 1) Güncellenecek session'ı al
         SessionService.getById(id)
             .then(session => {
                 setStartTime(session.startTime.slice(0, 16));
-                // backend'den gelen alanlara göre bu satırları ayarla:
-                // eğer session.movie.id geliyorsa:
                 setMovieId(session.movie?.id || session.movie);
                 setHallId( session.hall?.id  || session.hall);
                 setPrice(session.price);
             })
             .catch(console.error);
 
-        // 2) Filmler listesini al
         api.get("/movies")
             .then(r => {
                 const list = r.data._embedded?.domainMovieList || [];
@@ -38,7 +32,6 @@ export default function UpdateSession() {
             })
             .catch(console.error);
 
-        // 3) Salonlar listesini al
         api.get("/halls")
             .then(r => {
                 const list = r.data._embedded?.domainHallList || [];

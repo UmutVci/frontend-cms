@@ -1,5 +1,5 @@
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../AdminLayout/Sidebar";
+import Header from "../AdminLayout/Header";
 import React, {useEffect, useState} from "react";
 import SearchBar from "../../../components/AdminCustomersSearchBar";
 import AdminMessagesTable from "../../../components/AdminFeedbacks/AdminMessagesTable";
@@ -17,10 +17,6 @@ export default function AdminMessages(){
             .catch(error => "Feedbacks couldnt fetch : " + error)
     } );
     return(
-        <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <div className="flex-col flex-1 overflow-y-auto">
-                <Header title="Feedbacks"/>
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <SearchBar />
@@ -34,7 +30,5 @@ export default function AdminMessages(){
                         </div>
                     </div>
                 </main>
-            </div>
-        </div>
     )
 }

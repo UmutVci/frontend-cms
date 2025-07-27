@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../AdminLayout/Sidebar";
+import Header from "../AdminLayout/Header";
 import api from "../../../lib/axios";            // axios.create({ baseURL:"http://localhost:8080/api" })
 import SessionService from "../../../services/SessionService";
 
