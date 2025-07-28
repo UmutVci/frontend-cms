@@ -1,13 +1,18 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../AdminLayout/Sidebar";
 import Header from "../AdminLayout/Header";
-import SearchBar from "../../../components/AdminCustomersSearchBar";
+import { SearchIcon } from "@heroicons/react/solid";
 import Pagination from "../../../components/Pagination";
 import HallService from "../../../services/HallService";
 import AdminHallsTable from "../../../components/AdminHalls/AdminHallsTable";
 
 export default function AdminHalls() {
     const [halls, setHalls] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [sortField, setSortField] = useState("id");
+    const [sortOrder, setSortOrder] = useState("asc"); // "asc" veya "desc"
+    const itemsPerPage = 6;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -15,44 +20,147 @@ export default function AdminHalls() {
                 const data = await HallService.getAll();
                 setHalls(data);
             } catch (error) {
-                console.log("Data coldn't fetch", error);
+                console.log("Data couldn't fetch", error);
             }
         };
         fetchData();
     }, []);
 
+    // Filtreleme
+    const filtered = halls.filter(hall => {
+        const term = searchTerm.toLowerCase();
+
+        const idStr      = String(hall.id).toLowerCase();
+        const nameStr    = (hall.name || '').toLowerCase();
+        const capStr     = String(hall.capacity ?? '').toLowerCase();
+        const hallTypeStr= (hall.type && typeof hall.type === "string")
+            ? hall.type.toLowerCase()
+            : (hall.type?.name?.toLowerCase() || '');
+
+        return (
+            idStr.includes(term) ||
+            nameStr.includes(term) ||
+            capStr.includes(term) ||
+            hallTypeStr.includes(term)
+        );
+    });
+
+    // Sıralama
+    const sorted = [...filtered].sort((a, b) => {
+        let va, vb;
+        switch (sortField) {
+            case "name":
+                va = (a.name || '').toLowerCase();
+                vb = (b.name || '').toLowerCase();
+                break;
+            case "capacity":
+                va = a.capacity ?? 0; // sayı, null ise 0
+                vb = b.capacity ?? 0;
+                break;
+            case "hallType":
+                va = (a.type || '').toLowerCase();
+                vb = (b.type || '').toLowerCase();
+                break;
+            case "id":
+            default:
+                va = a.id;
+                vb = b.id;
+        }
+
+        // Numeric ise sayı olarak, değilse string olarak karşılaştır
+        if (typeof va === "number" && typeof vb === "number") {
+            return sortOrder === "asc" ? va - vb : vb - va;
+        } else {
+            const cmp = String(va).localeCompare(String(vb));
+            return sortOrder === "asc" ? cmp : -cmp;
+        }
+    });
 
 
-    const itemsPerPage = 6
-    const pageCount    = Math.ceil(12 / itemsPerPage)
-    const [currentPage, setCurrentPage] = useState(1)
+    // Pagination
+    const pageCount = Math.ceil(sorted.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentHalls = sorted.slice(startIndex, startIndex + itemsPerPage);
 
     return (
+        <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
+            <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto flex flex-col">
+                <div className="flex items-center justify-between mb-6">
+                    {/* + Add Hall butonu: solda */}
+                    <a href="/admin/add-hall">
+                        <button className="bg-[#202123] text-white h-10 px-6 rounded-full">
+                            + Add Hall
+                        </button>
+                    </a>
 
-                <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
-                    <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-                        <SearchBar />
-                        <div className="flex items-center justify-between mb-6">
-                            <a href = "/admin/add-hall">
-                                <button className="bg-[#202123] text-white h-8 w-36 rounded-xl flex items-center justify-center">
-                                    <span className="text-l">+ Add Hall</span>
-                                </button>
-                            </a>
-                            <button className="ml-auto flex items-center h-8 w-36 rounded-3xl border-2 border-gray-400 justify-center">
-                                <span className="text-l text-gray-400 mr-2">Sort By:</span>
-                                <span className="text-l">ID</span>
-                            </button>
-                        </div>
-                        <AdminHallsTable halls = {halls} />
-
-                        <div className="mt-auto">
-                            <Pagination
-                                currentPage={currentPage}
-                                pageCount={pageCount}
-                                onPageChange={setCurrentPage}
+                    {/* Arama çubuğu: ortada */}
+                    <div className="flex-1 flex justify-center px-4">
+                        <form
+                            onSubmit={e => e.preventDefault()}
+                            className="relative w-full max-w-md"
+                        >
+                            <input
+                                type="text"
+                                placeholder="Search by ID or Name..."
+                                value={searchTerm}
+                                onChange={e => {
+                                    setSearchTerm(e.target.value);
+                                    setCurrentPage(1);
+                                }}
+                                className="w-full pl-4 pr-10 py-2 border rounded-full focus:outline-none"
                             />
-                        </div>
+                            <button
+                                type="submit"
+                                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+                            >
+                                <SearchIcon className="h-5 w-5" />
+                            </button>
+                        </form>
                     </div>
-                </main>
+
+                    {/* Sıralama DropDownları */}
+                    <div className="flex items-center space-x-4">
+                        <span className="font-medium text-gray-700">Sort by:</span>
+                        <select
+                            value={sortField}
+                            onChange={e => {
+                                setSortField(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            className="border rounded-md p-1"
+                        >
+                            <option value="id">ID</option>
+                            <option value="name">Name</option>
+                            <option value="hallType">Hall</option>
+                            <option value="capacity">Capacity</option>
+
+                        </select>
+                        <select
+                            value={sortOrder}
+                            onChange={e => {
+                                setSortOrder(e.target.value);
+                                setCurrentPage(1);
+                            }}
+                            className="border rounded-md p-1"
+                        >
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div className="overflow-x-auto">
+                    <AdminHallsTable halls={currentHalls} />
+                </div>
+
+                <div className="mt-6">
+                    <Pagination
+                        currentPage={currentPage}
+                        pageCount={pageCount}
+                        onPageChange={setCurrentPage}
+                    />
+                </div>
+            </div>
+        </main>
     );
 }

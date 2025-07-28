@@ -1,13 +1,13 @@
-import Sidebar from "../../../components/Sidebar";
-import Header from "../../../components/Header";
+import Sidebar from "../ClerkLayout/ClerkSidebar";
+import Header from "../ClerkLayout/ClerkHeader";
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TicketClerkService from "../../../services/TicketClerkService";
+import useAuth from '../../auth/useAuth';
 
 export default function ClerkSettings() {
-    const { id } = useParams();
     const navigate = useNavigate();
-
+    const { user } = useAuth((state) => ({ user: state.user })); // user bilgisini çek
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(true);
@@ -15,9 +15,11 @@ export default function ClerkSettings() {
     useEffect(() => {
         const fetchClerk = async () => {
             try {
-                const response = await TicketClerkService.getById(id);
-                setEmail(response.email);
-                setPassword(""); // şifreyi boş bırak (hash'i gösterme)
+                if (user?.id) {
+                    const response = await TicketClerkService.getById(user.id);
+                    setEmail(response.email);
+                }
+                setPassword("");
             } catch (err) {
                 console.error("Ticket clerk yüklenemedi:", err);
             } finally {
@@ -25,14 +27,14 @@ export default function ClerkSettings() {
             }
         };
         fetchClerk();
-    }, [id]);
+    }, [user]);
 
     const handleInput = async (e) => {
         e.preventDefault();
         const updatedClerk = { email, password: password || undefined };
-        const success = await TicketClerkService.update(id, updatedClerk);
+        const success = await TicketClerkService.update(user.id, updatedClerk);
         if (success) {
-            navigate("/ticket-clerks");
+            navigate("/clerk");
         }
     };
 

@@ -6,6 +6,8 @@ export default function Header({ title, onMenuClick }) {
     const user = useAuth((state) => state.user) || {};
     const location = useLocation();
     const path = location.pathname;
+    const username = user?.email?.split('@')[0] || 'Loading...';
+
 
     let dynamicTitle = "Admin Panel";
 
@@ -27,6 +29,8 @@ export default function Header({ title, onMenuClick }) {
         "/admin/addSession": "Add Session",
         "/admin/messages": "Feedback Messages",
         "/admin/ticket-clerks": "Ticket Clerks",
+        "/admin/add-ticket-clerk": "Add New Ticket Clerk",
+
 
         "/clerk": "Bookings",
         "/clerk/bookings": "Bookings",
@@ -47,7 +51,7 @@ export default function Header({ title, onMenuClick }) {
 
             <div className="flex items-center space-x-6">
                 <img className="w-12 h-12 rounded-full object-cover" src="/pass.jpg" alt="Profile" />
-                <span className="text-black font-medium text-md">{user?.name || "Loading..."}</span>
+                <span className="text-black font-medium text-md">{username || "Loading..."}</span>
 
             </div>
         </div>

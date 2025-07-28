@@ -1,7 +1,6 @@
 import api from '../lib/axios';
 
 class MovieService {
-
     async getAll() {
         const response = await api.get('/movies');
         return response.data._embedded?.domainMovieList || [];
@@ -14,13 +13,23 @@ class MovieService {
 
     async create(movie) {
         try {
-            const response = await api.post('/movies', movie);
+            const token = localStorage.getItem('token');
+            console.log("🎟️ JWT Token (MovieService):", token); // token burada loglanıyor
+
+            const response = await api.post('/movies', movie); // token header'da mı? Interceptor'a bağlı
             return response.status === 201 || response.status === 200;
         } catch (error) {
-            console.error("Film oluşturulurken hata:", error);
+            console.error("🔥 Film oluşturulurken hata:", {
+                message: error.message,
+                status: error.response?.status,
+                data: error.response?.data,
+                headers: error.response?.headers
+            });
             return false;
         }
     }
+
+
 
     async update(id, updatedMovie) {
         try {
@@ -37,7 +46,7 @@ class MovieService {
             const response = await api.delete(`/movies/${id}`);
             return response.status === 204;
         } catch (error) {
-            console.error("Film silinemedi:", error);
+            console.error("Film silinemedi:", error.response?.data || error.message);
         }
     }
 }

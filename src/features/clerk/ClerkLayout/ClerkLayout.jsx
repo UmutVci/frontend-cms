@@ -8,7 +8,6 @@ export default function ClerkLayout() {
 
     return (
         <div className="flex min-h-screen w-full min-w-0">
-            {/* Sidebar - mobilde kapalı, md ve üstünde açık */}
             <div className={`
                 fixed inset-y-0 left-0 z-40 w-64 bg-[#400505] transition-transform duration-300
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
@@ -17,7 +16,6 @@ export default function ClerkLayout() {
                 <ClerkSidebar onClose={() => setIsSidebarOpen(false)} />
             </div>
 
-            {/* Overlay sadece mobilde ve sidebar açıkken */}
             {isSidebarOpen && (
                 <div
                     className="fixed inset-0 z-30 bg-black bg-opacity-50 md:hidden"
@@ -25,7 +23,6 @@ export default function ClerkLayout() {
                 />
             )}
 
-            {/* Main content - sağda */}
             <div className="flex flex-col w-full min-w-0">
                 <ClerkHeader onMenuClick={() => setIsSidebarOpen(true)} />
                 <main className="flex-1 overflow-y-auto overflow-x-hidden bg-gray-100 p-4 min-w-0">

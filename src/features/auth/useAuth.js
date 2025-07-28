@@ -24,12 +24,14 @@ const useAuth = create((set) => ({
 
     loginUser: async (credentials) => {
         try {
-            const data = await login(credentials); // { token, email, role }
+            const data = await login(credentials);
             set({ error: null });
-            const user = { name: data.email };
+
+            const user = { id: data.id, email: data.email };
             useAuth.getState().setUser(user);
             useAuth.getState().setRole(data.role);
             useAuth.getState().setToken(data.token);
+
             return true;
         } catch (err) {
             set({ error: err.response?.data || 'Login failed' });

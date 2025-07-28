@@ -1,6 +1,6 @@
-import axios from '../../lib/axios'
+import api from '../../lib/axios'; // axios değil api!
 
 export const login = async ({ email, password }) => {
-    const response = await axios.post('/auth/login', { email, password })
-    return response.data
+    const response = await api.post('/auth/login', { email, password });
+    return response.data;
 }
