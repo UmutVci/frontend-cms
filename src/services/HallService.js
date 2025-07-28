@@ -16,6 +16,11 @@ class HallService {
         }
     }
 
+    async getById(id) {
+        const response = await api.get(`/halls/${id}`);
+        return response.data || null;
+    }
+
     async update(id, hall) {
         try {
             const response = await api.put(`/halls/${id}`, hall);

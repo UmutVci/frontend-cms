@@ -7,27 +7,16 @@ import useAuth from '../../auth/useAuth';
 
 export default function ClerkSettings() {
     const navigate = useNavigate();
-    const { user } = useAuth((state) => ({ user: state.user })); // user bilgisini çek
+    const user = useAuth((state) => state.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchClerk = async () => {
-            try {
-                if (user?.id) {
-                    const response = await TicketClerkService.getById(user.id);
-                    setEmail(response.email);
-                }
-                setPassword("");
-            } catch (err) {
-                console.error("Ticket clerk yüklenemedi:", err);
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchClerk();
-    }, [user]);
+        if (user?.email) {
+            setEmail(user.email);
+        }
+    }, [user?.email]);
+
 
     const handleInput = async (e) => {
         e.preventDefault();
@@ -37,16 +26,7 @@ export default function ClerkSettings() {
             navigate("/clerk");
         }
     };
-
-    if (loading) {
-        return <div className="p-10">Loading...</div>;
-    }
-
     return (
-        <div className="flex h-screen overflow-hidden">
-            <Sidebar />
-            <div className="flex flex-col flex-1 overflow-y-auto">
-                <Header title="Update Ticket Clerk" />
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-[75%] h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <form className="p-8 space-y-4" onSubmit={handleInput}>
@@ -76,7 +56,5 @@ export default function ClerkSettings() {
                         </form>
                     </div>
                 </main>
-            </div>
-        </div>
     );
 }
