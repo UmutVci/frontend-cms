@@ -1,8 +1,8 @@
-// src/pages/customer/SeatsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import SessionService from '../../../services/SessionService';
 import HallService from '../../../services/HallService';
+import useAuth from "../../auth/useAuth";
 
 export default function SeatsPage() {
     const { sessionId } = useParams();
@@ -28,7 +28,6 @@ export default function SeatsPage() {
                 setHall(hallData);
                 setSeats(seatsData);
             } catch (err) {
-                console.error("❌ Veri yüklenemedi:", err);
             } finally {
                 setLoading(false);
             }
@@ -44,25 +43,22 @@ export default function SeatsPage() {
 
     const handleReserve = async () => {
         try {
-            console.log("🔒 Reserving:", selectedSeats);
-            await SessionService.reserveSeats(sessionId, selectedSeats);
-            const seatObjects = seats.filter(seat => selectedSeats.includes(seat.id));
+            const customerId = useAuth.getState().user?.id;
+            console.log("🟢 Reserving seats:", selectedSeats, "CustomerID:", customerId);
 
-            navigate(`/reservation-success?sessionId=${session.id}&hallId=${hall.id}&seatIds=${selectedSeats.join(',')}`, {
-                state: { session, hall, seats: seatObjects } // yedek olsun
-            });
+            await SessionService.reserveSeats(sessionId, selectedSeats, customerId);
+
+            navigate(`/clerk/reservation-success?sessionId=${session.id}&hallId=${hall.id}&seatIds=${selectedSeats.join(',')}`);
+
         } catch (err) {
-            console.error("❌ Rezervasyon hatası:", err);
-            if (err.response?.status === 403 || err.response?.status === 401) {
-                alert("🔒 Yetkisiz! Lütfen tekrar giriş yapın.");
-            } else {
-                alert("Rezervasyon başarısız.");
-            }
+            console.error("❌ Reservation Error: ", err);
+            alert("Rezervasyon başarısız.");
         }
     };
 
-    if (loading) return <div className="p-6 text-center">Yükleniyor...</div>;
-    if (!session || !hall) return <div className="p-6 text-red-600">Veri eksik.</div>;
+
+    if (loading) return <div className="p-6 text-center">Loading...</div>;
+    if (!session || !hall) return <div className="p-6 text-red-600">Error.</div>;
 
     const seatMap = {};
     seats.forEach(seat => {
@@ -121,8 +117,8 @@ export default function SeatsPage() {
                 className="mt-6 bg-blue-700 text-white px-6 py-2 rounded"
             >
                 {selectedSeats.length > 0
-                    ? `Rezervasyon Yap (${selectedSeats.length})`
-                    : "Koltuk Seç"}
+                    ? `Do Reservation  (${selectedSeats.length})`
+                    : "Pick a Seat"}
             </button>
         </div>
     );

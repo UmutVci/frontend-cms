@@ -20,8 +20,11 @@ class SeatService {
         return response.data;
     }
 
-    async reserveSeats(sessionId, seatIds) {
-        const response = await api.post(`/sessions/${sessionId}/reserve`, seatIds);
+    async reserveSeats(sessionId, seatIds, customerId) {
+        const response = await api.post(
+            `/sessions/${sessionId}/reserve?customerId=${customerId}`,
+            seatIds
+        );
         return response.data;
     }
     async create(seat) {

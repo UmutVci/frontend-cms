@@ -28,14 +28,14 @@ class SessionService {
         const response = await api.put(`/sessions/${id}`, updatedSession);
         return response.data;
     }
-    async reserveSeats(sessionId, seatIds) {
-        const response = await api.post(`/sessions/${sessionId}/reserve`, seatIds, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        });
+    async reserveSeats(sessionId, seatIds, customerId) {
+        const response = await api.post(
+            `/sessions/${sessionId}/reserve?customerId=${customerId}`,
+            seatIds
+        );
         return response.data;
     }
+
     // Oturumu sil
     async delete(id) {
         const response = await api.delete(`/sessions/${id}`);
