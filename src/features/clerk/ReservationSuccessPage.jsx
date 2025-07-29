@@ -50,20 +50,22 @@ export default function ReservationSuccessPage() {
     const seatLabels = seats.map(seat => `${seat.seatRow}${seat.seatColumn}`).join(', ');
 
     return (
-        <div className="p-6 text-center">
+        <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
+            <div className="bg-white w-[75%] h-full mx-auto my-4 rounded-xl p-6 overflow-auto">
             <h2 className="text-2xl font-bold mb-4 text-green-700">🎉 Reservation Successfully!</h2>
-            <p className="mb-2">🎬 <strong>{movie?.title || 'Film'}</strong></p>
-            <p className="mb-2">📅 Date: {new Date(session.startTime).toLocaleDateString()}</p>
-            <p className="mb-2">🕒 Time: {new Date(session.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
-            <p className="mb-4">🪑 Seats: {seatLabels}</p>
+            <p className="mb-2"> <strong>{movie?.title || 'Film'}</strong></p>
+            <p className="mb-2">Date: {new Date(session.startTime).toLocaleDateString()}</p>
+            <p className="mb-2">Time: {new Date(session.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+            <p className="mb-4">Seats: {seatLabels}</p>
             <p className="font-semibold">🏛️ Hall: {hall.name}</p>
 
             <button
-                onClick={() => navigate('/')}
-                className="mt-6 bg-blue-700 text-white px-6 py-2 rounded"
+                onClick={() => navigate('/clerk/movies')}
+                className="mt-6 bg-[#400505] text-white px-6 py-2 rounded"
             >
                 Back to the Homepage
             </button>
         </div>
+        </main>
     );
 }

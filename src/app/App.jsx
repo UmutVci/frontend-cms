@@ -4,7 +4,6 @@ import RequireRole from "../components/RequireRole";
 import AdminLayout from "../features/admin/AdminLayout/AdminLayout";
 import ClerkLayout from "../features/clerk/ClerkLayout/ClerkLayout";
 import LoginPage from "../features/auth/LoginPage";
-import SeatsPage from "../features/clerk/ClerkSeat/SeatsPage";
 
 import AdminCustomers from "../features/admin/AdminCustomers/AdminCustomers";
 import MoviesPage from "../features/admin/AdminMovies/MoviesPage";
@@ -18,7 +17,6 @@ import UpdateSession from "../features/admin/AdminSessions/UpdateSession";
 import AdminMessages from "../features/admin/AdminFeedbacks/AdminMessages";
 import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
 import AddTicketClerk from "../features/admin/TicketClerks/AddTicketClerk";
-import ReservationSuccessPage from '../features/clerk/ReservationSuccessPage';
 
 import ClerkSearchBookings from "../features/clerk/ClerkBookings/ClerkSearchBookings";
 import ClerkMoviesPage from "../features/clerk/ClerkMovies/ClerkMoviesPage";
@@ -27,8 +25,18 @@ import ClerkSession from "../features/clerk/ClerkSession/ClerkSession";
 import UpdateMovie from "../features/admin/AdminMovies/UpdateMovie";
 import ClerkMovieSessions from "../features/clerk/ClerkMovies/MovieSessions";
 import ClerkSettings from "../features/clerk/ClerkSettings/ClerkSettings";
+import {useEffect} from "react";
+import useAuth from "../features/auth/useAuth";
+import AdminSettings from "../features/admin/AdminSettings";
+import SeatsPage from "../features/clerk/ClerkSeat/SeatsPage";
+import ReservationSuccessPage from "../features/clerk/ReservationSuccessPage";
 
 function App() {
+
+    useEffect(() => {
+        useAuth.getState().initialize();
+    }, []);
+
     return (
         <BrowserRouter>
             <Routes>
@@ -78,7 +86,6 @@ function App() {
                     <Route path="settings/:id" element={<ClerkSettings />} />
                     <Route path="reservation-success" element={<ReservationSuccessPage />} />
                     <Route path="sessions/:sessionId/seats" element={<SeatsPage />} />
-                    <Route path="reservation-success" element={<ReservationSuccessPage />} />
 
 
                 </Route>

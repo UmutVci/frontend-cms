@@ -70,9 +70,10 @@ export default function SeatsPage() {
     const rowCount = Math.ceil(totalSeats / seatsPerRow);
 
     return (
-        <div className="p-6">
-            <h2 className="text-2xl font-bold">Salon: {hall.name}</h2>
-            <h3 className="mb-4">Seans: {new Date(session.startTime).toLocaleString()}</h3>
+        <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
+            <div className="bg-white w-[75%] h-full mx-auto my-4 rounded-xl p-6 overflow-auto">
+            <h2 className="text-2xl font-bold">Hall: {hall.name}</h2>
+            <h3 className="mb-4">Session: {new Date(session.startTime).toLocaleString()}</h3>
             <div className="bg-black p-6 rounded-xl inline-block">
                 {Array.from({ length: rowCount }).map((_, rowIdx) => {
                     const rowLabel = String.fromCharCode(65 + rowIdx);
@@ -111,15 +112,17 @@ export default function SeatsPage() {
                     );
                 })}
             </div>
+                <br />
             <button
                 onClick={handleReserve}
                 disabled={selectedSeats.length === 0}
-                className="mt-6 bg-blue-700 text-white px-6 py-2 rounded"
+                className="mt-6 bg-[#400505] text-white px-6 py-2 rounded"
             >
                 {selectedSeats.length > 0
                     ? `Do Reservation  (${selectedSeats.length})`
                     : "Pick a Seat"}
             </button>
         </div>
+        </main>
     );
 }

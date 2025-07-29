@@ -17,6 +17,10 @@ class FeedbackService {
         const response = await api.get(`/feedbacks/${id}`);
         return response.data._embedded?.feedbackList || [];
     }
+    async getCount() {
+        const response = await api.get(`/feedbacks/count`);
+        return response.data;
+    }
 
     async create(ticketClerk) {
         const response = await api.post('/feedbacks', ticketClerk);

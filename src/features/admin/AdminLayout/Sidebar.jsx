@@ -10,17 +10,26 @@ import {
 } from '@heroicons/react/outline'
 import { UsersIcon, ViewBoardsIcon, XIcon } from "@heroicons/react/solid";
 import useAuth from "../../auth/useAuth";
+import {useEffect, useState} from "react";
+import FeedbackService from "../../../services/FeedbackService";
 
 export default function AdminSidebar({ onClose }) {
+    const [feedbackCount, setFeedbackCount] = useState("0")
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        FeedbackService.getCount()
+            .then(r => setFeedbackCount(r))
+            .catch(err => console.error("Feedback count error:", err));
+    });
     const items = [
-        { path: '/admin/messages',    label: 'Feedbacks',   Icon: InboxIcon },
+        { path: '/admin/messages',    label: "Feedbacks " + feedbackCount,   Icon: InboxIcon },
         { path: '/admin/movies',      label: 'Movies',      Icon: FilmIcon },
         { path: '/admin/sessions',    label: 'Sessions',    Icon: CalendarIcon },
         { path: '/admin/halls',       label: 'Halls',       Icon: ViewBoardsIcon },
         { path: '/admin/customers',   label: 'Customers',   Icon: UserGroupIcon },
         { path: '/admin/ticket-clerks', label: 'Ticket Clerks', Icon: UsersIcon },
     ]
-    const navigate = useNavigate();
 
     const user = useAuth((state) => state.user) || {};
     const userId = user.id;

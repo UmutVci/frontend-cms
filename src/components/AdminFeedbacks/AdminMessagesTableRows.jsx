@@ -28,7 +28,7 @@ const MessagesRow = ({ feedback }) => {
             <td className="px-4 py-3 text-center">{hall}</td>
             <td className="px-4 py-3 text-center">{feedback.description}</td>
             <td className="px-4 py-3 text-center">
-                <td className="px-4 py-3 text-center"><button><PencilAltIcon className="w-5 h-5"></PencilAltIcon></button>
+                <td className="px-4 py-3 text-center">
                 <button onClick={handleDelete}><XCircleIcon className="mr-5 w-5 h-5"></XCircleIcon></button></td>
             </td>
         </tr>
