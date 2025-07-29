@@ -7,10 +7,13 @@ const api = axios.create({
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
-        if (token) {
-            console.log(`Token: ${token}`);
+
+        const isAuthEndpoint = config.url.includes('/auth/login') || config.url.includes('/ticket-clerks');
+
+        if (token && !isAuthEndpoint) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+
         return config;
     },
     (error) => Promise.reject(error)
