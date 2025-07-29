@@ -18,9 +18,7 @@ export default function AdminCustomers() {
     }, []);
 
     return (
-        <div className="bg-white w-full rounded-xl p-6 overflow-auto">
-            {/* Sayfa içi başlık (opsiyonel) */}
-            <h1 className="text-2xl font-normal mb-6">Customers</h1>
+        <div className="bg-white w-full mx-3 my-4 rounded-xl p-6 overflow-auto">
 
             <AdminCustomersSearchBar />
 

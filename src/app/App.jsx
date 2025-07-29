@@ -56,6 +56,9 @@ function App() {
                     <Route path="messages" element={<AdminMessages />} />
                     <Route path="ticket-clerks" element={<AdminTicketClerk />} />
                     <Route path="add-ticket-clerk" element={<AddTicketClerk />} />
+                    <Route path="settings/:id" element={<AdminSettings />}/>
+
+
                 </Route>
 
                 <Route
@@ -73,8 +76,11 @@ function App() {
                     <Route path="sessions" element={<ClerkSession />} />
                     <Route path="movies/:id/sessions" element={<ClerkMovieSessions />} />
                     <Route path="settings/:id" element={<ClerkSettings />} />
+                    <Route path="reservation-success" element={<ReservationSuccessPage />} />
                     <Route path="sessions/:sessionId/seats" element={<SeatsPage />} />
                     <Route path="reservation-success" element={<ReservationSuccessPage />} />
+
+
                 </Route>
 
                 {/* 404 */}

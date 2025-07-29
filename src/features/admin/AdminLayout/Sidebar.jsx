@@ -9,6 +9,7 @@ import {
     InboxIcon
 } from '@heroicons/react/outline'
 import { UsersIcon, ViewBoardsIcon, XIcon } from "@heroicons/react/solid";
+import useAuth from "../../auth/useAuth";
 
 export default function AdminSidebar({ onClose }) {
     const items = [
@@ -20,6 +21,11 @@ export default function AdminSidebar({ onClose }) {
         { path: '/admin/ticket-clerks', label: 'Ticket Clerks', Icon: UsersIcon },
     ]
     const navigate = useNavigate();
+
+    const user = useAuth((state) => state.user) || {};
+    const userId = user.id;
+    const link = "/admin/settings/" + userId;
+
 
     const handleLogout = () => {
         navigate('/');
@@ -59,7 +65,7 @@ export default function AdminSidebar({ onClose }) {
             </nav>
             <div className="border-t border-gray-700 p-4">
                 <NavLink
-                    to="/settings"
+                    to={link}
                     className="flex items-center px-4 py-2 space-x-3 text-gray-400 hover:bg-gray-800 hover:text-white rounded transition-colors"
                     onClick={onClose}
                 >
