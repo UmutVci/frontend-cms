@@ -8,7 +8,7 @@ class TicketClerkService {
 
     async getById(id) {
         const response = await api.get(`/ticket-clerks/${id}`);
-        return response.data; // ✅ direkt nesneyi döner
+        return response.data; //
     }
 
     async create(ticketClerk) {

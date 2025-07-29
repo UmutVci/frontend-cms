@@ -15,7 +15,15 @@ class SeatService {
         const response = await api.get(`/seats/${id}`);
         return response.data;
     }
+    async getSeatsBySessionId(sessionId) {
+        const response = await api.get(`/sessions/${sessionId}/seats`);
+        return response.data;
+    }
 
+    async reserveSeats(sessionId, seatIds) {
+        const response = await api.post(`/sessions/${sessionId}/reserve`, seatIds);
+        return response.data;
+    }
     async create(seat) {
         const response = await api.post('/seats', seat);
         return response.data;

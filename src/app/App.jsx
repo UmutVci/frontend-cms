@@ -4,6 +4,7 @@ import RequireRole from "../components/RequireRole";
 import AdminLayout from "../features/admin/AdminLayout/AdminLayout";
 import ClerkLayout from "../features/clerk/ClerkLayout/ClerkLayout";
 import LoginPage from "../features/auth/LoginPage";
+import SeatsPage from "../features/clerk/ClerkSeat/SeatsPage";
 
 import AdminCustomers from "../features/admin/AdminCustomers/AdminCustomers";
 import MoviesPage from "../features/admin/AdminMovies/MoviesPage";
@@ -17,6 +18,7 @@ import UpdateSession from "../features/admin/AdminSessions/UpdateSession";
 import AdminMessages from "../features/admin/AdminFeedbacks/AdminMessages";
 import AdminTicketClerk from "../features/admin/TicketClerks/AdminTicketClerk";
 import AddTicketClerk from "../features/admin/TicketClerks/AddTicketClerk";
+import ReservationSuccessPage from '../features/clerk/ReservationSuccessPage';
 
 import ClerkSearchBookings from "../features/clerk/ClerkBookings/ClerkSearchBookings";
 import ClerkMoviesPage from "../features/clerk/ClerkMovies/ClerkMoviesPage";
@@ -54,6 +56,8 @@ function App() {
                     <Route path="messages" element={<AdminMessages />} />
                     <Route path="ticket-clerks" element={<AdminTicketClerk />} />
                     <Route path="add-ticket-clerk" element={<AddTicketClerk />} />
+                    <Route path="reservation-success" element={<ReservationSuccessPage />} />
+
                 </Route>
 
                 <Route
@@ -69,8 +73,11 @@ function App() {
                     <Route path="movies" element={<ClerkMoviesPage />} />
                     <Route path="feedback" element={<ClerkFeedback />} />
                     <Route path="sessions" element={<ClerkSession />} />
+                    <Route path="/clerk/sessions/:sessionId/seats" element={<SeatsPage />} />
                     <Route path="movies/:id/sessions" element={<ClerkMovieSessions />} />
                     <Route path="settings/:id" element={<ClerkSettings />} />
+                    <Route path="sessions/:sessionId/seats" element={<SeatsPage />} />
+
                 </Route>
 
                 {/* 404 */}

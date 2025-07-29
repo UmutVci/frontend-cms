@@ -28,7 +28,14 @@ class SessionService {
         const response = await api.put(`/sessions/${id}`, updatedSession);
         return response.data;
     }
-
+    async reserveSeats(sessionId, seatIds) {
+        const response = await api.post(`/sessions/${sessionId}/reserve`, seatIds, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        });
+        return response.data;
+    }
     // Oturumu sil
     async delete(id) {
         const response = await api.delete(`/sessions/${id}`);
@@ -40,7 +47,10 @@ class SessionService {
         const response = await api.get(`/sessions/hall/${hallId}`);
         return response.data._embedded?.domainSessionList || [];
     }
-
+    async getSeatsBySessionId(sessionId) {
+        const response = await api.get(`/sessions/${sessionId}/seats`);
+        return response.data;
+    }
     // Belirli bir filmin tüm oturumlarını getir
     async getAllSessionsFromMovie(movieId) {
         const response = await api.get(`/sessions/movie/${movieId}`);
