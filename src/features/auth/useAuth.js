@@ -7,6 +7,14 @@ const useAuth = create((set) => ({
     token: localStorage.getItem('token') || null,
     error: null,
 
+    initialize: () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        const role = localStorage.getItem('role');
+        const token = localStorage.getItem('token');
+
+        set({ user, role, token });
+    },
+
     setUser: (user) => {
         localStorage.setItem('user', JSON.stringify(user));
         set({ user });

@@ -83,7 +83,6 @@ export default function AdminHalls() {
     const currentHalls = sorted.slice(startIndex, startIndex + itemsPerPage);
 
     return (
-        <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
             <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto flex flex-col">
                 <div className="flex items-center justify-between mb-6">
                     {/* + Add Hall butonu: solda */}
@@ -161,6 +160,5 @@ export default function AdminHalls() {
                     />
                 </div>
             </div>
-        </main>
     );
 }

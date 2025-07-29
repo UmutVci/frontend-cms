@@ -8,9 +8,9 @@ api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('token');
 
-        const isAuthEndpoint = config.url.includes('/auth/login') || config.url.includes('/ticket-clerks');
+        const isLogin = config.url.includes('/auth/login');
 
-        if (token && !isAuthEndpoint) {
+        if (token && !isLogin) {
             config.headers.Authorization = `Bearer ${token}`;
         }
 

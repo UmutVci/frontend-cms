@@ -38,10 +38,11 @@ export default function AddHallForm() {
                 <div>
                     <label className="block font-semibold mb-1">Capacity</label>
                     <input
-                        type="text"
+                        type="number"
                         value={capacity}
                         onChange={e => setCapacity(e.target.value)}
                         className="w-full border-2 border-gray-300 rounded-md h-8 px-2"
+                        min="1"
                         required
                     />
                 </div>

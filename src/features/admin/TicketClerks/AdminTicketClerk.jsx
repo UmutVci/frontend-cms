@@ -17,7 +17,7 @@ export default function AdminTicketClerk() {
         TicketClerkService.getAll()
             .then(setClerks)
             .catch(console.error);
-    }, []);
+    });
 
     const filtered = clerks.filter(clerk => {
         const term = searchTerm.toLowerCase();
@@ -49,7 +49,6 @@ export default function AdminTicketClerk() {
     const currentItems = sorted.slice(startIndex, startIndex + itemsPerPage);
 
     return (
-        <main className="inner-container flex-1 p-10 bg-[#D9D9D9]">
             <div className="bg-white w-full mx-3 my-4 rounded-xl p-6 overflow-auto flex flex-col">
 
                 {/* Header */}
@@ -127,6 +126,5 @@ export default function AdminTicketClerk() {
                     />
                 </div>
             </div>
-        </main>
     );
 }

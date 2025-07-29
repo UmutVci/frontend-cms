@@ -17,7 +17,6 @@ export default function AdminMessages(){
             .catch(error => "Feedbacks couldnt fetch : " + error)
     } );
     return(
-                <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto">
                         <SearchBar />
                         <AdminMessagesTable feedbacks = {feedbacks}/>
@@ -29,6 +28,5 @@ export default function AdminMessages(){
                             />
                         </div>
                     </div>
-                </main>
     )
 }
