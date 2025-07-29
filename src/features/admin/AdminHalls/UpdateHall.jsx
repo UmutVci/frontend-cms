@@ -55,7 +55,7 @@ export default function UpdateHall() {
                                 type="submit"
                                 className="bg-[#400505] text-white py-2 px-6 rounded-md"
                             >
-                                Add Hall
+                                Update Hall
                             </button>
                         </form>
                     </div>
