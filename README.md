@@ -18,14 +18,17 @@ cd frontend-cms
 
 ## Running with Docker Compose
 This will build and start all services (frontend, backend, and database).
+
 Stop any running containers and remove volumes:
+
 docker-compose down --volumes
+
 Build images and start containers:
 # Build all services
 docker-compose build --no-cache
 
 # Or build only frontend:
-# docker-compose build --no-cache frontend
+docker-compose build --no-cache frontend
 
 # Start
 simply docker-compose up or (for in detached mode)
