@@ -1,13 +1,11 @@
 import api from '../lib/axios';
 
 class SessionService {
-    // Tüm oturumları getir
     async getAll() {
         const response = await api.get('/sessions');
         return response.data._embedded?.domainSessionList || [];
     }
 
-    // ID'ye göre oturumu getir
     async getById(id) {
         const response = await api.get(`/sessions/${id}`);
         return response.data;
@@ -18,12 +16,10 @@ class SessionService {
             const response = await api.post('/sessions', session);
             return response.data;
         } catch (err) {
-            // Opsiyonel: console.log(err.response?.data || err);
-            throw err; // Hata varsa dışarı fırlat
+            throw err;
         }
     }
 
-    // Oturumu güncelle
     async update(id, updatedSession) {
         const response = await api.put(`/sessions/${id}`, updatedSession);
         return response.data;
@@ -36,13 +32,16 @@ class SessionService {
         return response.data;
     }
 
-    // Oturumu sil
     async delete(id) {
-        const response = await api.delete(`/sessions/${id}`);
-        return response.data;
+        try {
+            const r = await api.delete(`/sessions/${id}`)
+            return r.status >= 200 && r.status < 300
+        } catch (err) {
+            console.error('Error deleting session:', err.response?.status, err.response?.data)
+            return false
+        }
     }
 
-    // Belirli bir salonun tüm oturumlarını getir
     async getAllSessionsFromHall(hallId) {
         const response = await api.get(`/sessions/hall/${hallId}`);
         return response.data._embedded?.domainSessionList || [];
@@ -51,16 +50,14 @@ class SessionService {
         const response = await api.get(`/sessions/${sessionId}/seats`);
         return response.data;
     }
-    // Belirli bir filmin tüm oturumlarını getir
     async getAllSessionsFromMovie(movieId) {
         const response = await api.get(`/sessions/movie/${movieId}`);
         return response.data._embedded?.domainSessionList || [];
     }
 
-    // Belirli bir oturumun bitiş zamanını getir
     async endTimeBySessionId(id) {
         const response = await api.get(`/sessions/${id}/session/end`);
-        return response.data; // LocalDateTime string olarak gelir (örneğin: "2025-07-27T21:00:00")
+        return response.data;
     }
 }
 

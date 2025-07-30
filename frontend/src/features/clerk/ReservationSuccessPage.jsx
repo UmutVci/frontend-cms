@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import SessionService from '../../services/SessionService';
 import HallService from '../../services/HallService';
-import MovieService from '../../services/MovieService'; // ✅ Movie servisini ekledik
+import MovieService from '../../services/MovieService';
 
 export default function ReservationSuccessPage() {
     const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function ReservationSuccessPage() {
     const [session, setSession] = useState(null);
     const [hall, setHall] = useState(null);
     const [seats, setSeats] = useState([]);
-    const [movie, setMovie] = useState(null); // ✅ Film bilgisi için state
+    const [movie, setMovie] = useState(null);
 
     useEffect(() => {
         const sessionId = searchParams.get('sessionId');
@@ -26,7 +26,6 @@ export default function ReservationSuccessPage() {
                 const allSeats = await SessionService.getSeatsBySessionId(sessionId);
                 const reservedSeats = allSeats.filter(seat => seatIds.includes(seat.id));
 
-                // 🎬 Film bilgisini çek
                 if (sessionData.movie) {
                     const movieData = await MovieService.getById(sessionData.movie);
                     setMovie(movieData);

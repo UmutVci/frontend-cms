@@ -15,7 +15,6 @@ export default function UpdateMovie() {
     const [genre, setGenre] = useState(movie.genre);
     const [duration, setDuration] = useState(movie.duration);
     const [img, setImg] = useState(movie.imgUrl);
-    const [price, setPrice] = useState(movie.price);
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -26,7 +25,6 @@ export default function UpdateMovie() {
                     setGenre(movie.genre);
                     setDuration(movie.duration);
                     setImg(movie.imgUrl || movie.imageUrl);
-                    setPrice(movie.price);
                 } else {
                     alert("Movie not found.");
                     navigate("/admin/movies");
@@ -41,13 +39,11 @@ export default function UpdateMovie() {
     const handleInput = async (e) => {
         e.preventDefault();
         const updatedMovie = {
-            id, title: name, genre, duration, imgUrl: img, price: parseFloat(price) || 0
+            id, title: name, genre, duration, imgUrl: img
         };
-        console.log("Gönderilen veri:", updatedMovie);
-        console.log("Gönderilen veri:", updatedMovie);
-        console.log("Price tipi:", typeof price, "Değer:", price);
+
         const success = await MovieService.update(id, updatedMovie);
-        console.log("Güncelleme sonucu:", success);
+
         if (success) {
             navigate("/admin/movies");
         }
@@ -89,16 +85,6 @@ export default function UpdateMovie() {
                                 type="text"
                                 value={img}
                                 onChange={(e) => setImg(e.target.value)}
-                                className="border-2 border-gray-300 rounded-md h-8 w-full"
-                                required
-                            />
-                            <label className="block text-black font-semibold">Price (₺)</label>
-                            <input
-                                type="number"
-                                min="0"
-                                step="0.01"
-                                value={price}
-                                onChange={(e) => setPrice(e.target.value)}
                                 className="border-2 border-gray-300 rounded-md h-8 w-full"
                                 required
                             />

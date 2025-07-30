@@ -21,7 +21,7 @@ export default function AdminSettings(){
         const updatedClerk = { email, password: password || undefined };
         const success = await TicketClerkService.update(user.id, updatedClerk);
         if (success) {
-            navigate("/clerk");
+            navigate("/admin");
         }
     };
     return (
@@ -49,7 +49,7 @@ export default function AdminSettings(){
                         type="submit"
                         className="bg-[#400505] text-white py-2 px-6 rounded-md"
                     >
-                        Update Clerk
+                        Update Password
                     </button>
                 </form>
             </div>

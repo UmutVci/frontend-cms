@@ -3,9 +3,8 @@ import api from "../lib/axios";
 class ReservationService {
 
     async getAll() {
-        const response = await api.get('/reservations');
-
-        return response.data._embedded?.reservationList || [];
+        const response = await api.get("/reservations");
+        return response.data._embedded?.domainReservationList || [];
     }
 
     async getById(id) {

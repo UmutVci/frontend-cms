@@ -18,18 +18,19 @@ import java.util.List;
 @Table(name = "halls")
 public class Hall extends BaseEntity {
 
-    @Column(nullable = false)
-    private String name;
-    @Column(nullable = false)
-    private Integer capacity;
+        @Column(nullable = false)
+        private String name;
 
-    private String type;
+        @Column(nullable = false)
+        private Integer capacity;
 
-    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Session> sessions = new ArrayList<>();
+        private String type;
 
-    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Seat> seats = new ArrayList<>();
+        @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
+        @JsonManagedReference
+        private List<Session> sessions = new ArrayList<>();
+
+        @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Seat> seats = new ArrayList<>();
 
 }

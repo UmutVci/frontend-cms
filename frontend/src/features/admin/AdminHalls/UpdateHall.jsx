@@ -15,13 +15,29 @@ export default function UpdateHall() {
     const navigate = useNavigate();
 
     const handleInput = async (e) => {
-        e.preventDefault()
-        const thishall = {name: name, capacity: capacity, type: type}
-        const success = await HallService.update(hall.id, thishall)
-        if(success){
-            navigate("/admin/halls");
+        e.preventDefault();
+        const payload = {
+            name,
+            capacity: parseInt(capacity, 10),
+            type,
+        };
+
+        try {
+            const success = await HallService.update(hall.id, payload);
+            console.log("HallService.update returned:", success);
+
+            if (success) {
+                alert("Hall updated successfully!");
+                navigate("/admin/halls");
+            } else {
+                alert("Update failed.");
+            }
+        } catch (err) {
+            console.error("Error while updating hall", err);
+            alert("Server error: Could not update hall.");
         }
-    }
+    };
+
 
     return (
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">

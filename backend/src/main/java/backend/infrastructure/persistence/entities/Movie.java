@@ -18,7 +18,7 @@ public class Movie extends BaseEntity {
     private Integer duration;
     private String imgUrl;
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Session> sessions = new ArrayList<>();
+       @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true)
+       private List<Session> sessions = new ArrayList<>();
 
 }

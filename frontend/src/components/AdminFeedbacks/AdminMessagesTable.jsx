@@ -1,7 +1,7 @@
-import CustomerRow from "../AdminCustomer/AdminCustomerTableRows";
 import React from "react";
 import MessagesRow from "./AdminMessagesTableRows";
-export default function AdminMessagesTable({feedbacks}){
+
+export default function AdminMessagesTable({ feedbacks, onDelete }) {
     return (
         <div className="overflow-x-auto mt-8">
             <table className="min-w-full border border-gray-200 rounded-md overflow-hidden">
@@ -10,15 +10,20 @@ export default function AdminMessagesTable({feedbacks}){
                     <th className="px-4 py-2 text-center">Client Name</th>
                     <th className="px-4 py-2 text-center">Movie</th>
                     <th className="px-4 py-2 text-center">Hall</th>
-                    <th className="px-4 py-2 text-center" aria-valuemax="20">Message</th>
+                    <th className="px-4 py-2 text-center">Message</th>
+                    <th className="px-4 py-2 text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody className="bg-white">
                 {feedbacks.map((feedback) => (
-                    <MessagesRow key={feedback.id} feedback={feedback} />
+                    <MessagesRow
+                        key={feedback.id}
+                        feedback={feedback}
+                        onDelete={onDelete}   // ← pass it down
+                    />
                 ))}
                 </tbody>
             </table>
         </div>
-    )
+    );
 }

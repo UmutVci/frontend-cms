@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../AdminLayout/Sidebar";
-import Header from "../AdminLayout/Header";
 import { SearchIcon } from "@heroicons/react/solid";
 import Pagination from "../../../components/Pagination";
 import HallService from "../../../services/HallService";
 import AdminHallsTable from "../../../components/AdminHalls/AdminHallsTable";
+import {Link} from "react-router-dom";
 
 export default function AdminHalls() {
     const [halls, setHalls] = useState([]);
@@ -26,7 +25,6 @@ export default function AdminHalls() {
         fetchData();
     }, []);
 
-    // Filtreleme
     const filtered = halls.filter(hall => {
         const term = searchTerm.toLowerCase();
 
@@ -45,7 +43,6 @@ export default function AdminHalls() {
         );
     });
 
-    // Sıralama
     const sorted = [...filtered].sort((a, b) => {
         let va, vb;
         switch (sortField) {
@@ -67,7 +64,6 @@ export default function AdminHalls() {
                 vb = b.id;
         }
 
-        // Numeric ise sayı olarak, değilse string olarak karşılaştır
         if (typeof va === "number" && typeof vb === "number") {
             return sortOrder === "asc" ? va - vb : vb - va;
         } else {
@@ -75,9 +71,15 @@ export default function AdminHalls() {
             return sortOrder === "asc" ? cmp : -cmp;
         }
     });
+    const handleDelete = async (id) => {
+        const ok = await HallService.delete(id);
+        if (ok) {
+            setHalls(halls => halls.filter(h => h.id !== id));
+        } else {
+            alert("Could not delete hall. Check console for errors.");
+        }
+    };
 
-
-    // Pagination
     const pageCount = Math.ceil(sorted.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const currentHalls = sorted.slice(startIndex, startIndex + itemsPerPage);
@@ -85,14 +87,13 @@ export default function AdminHalls() {
     return (
             <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto flex flex-col">
                 <div className="flex items-center justify-between mb-6">
-                    {/* + Add Hall butonu: solda */}
-                    <a href="/admin/add-hall">
+                    <Link to="/admin/add-hall">
                         <button className="bg-[#202123] text-white h-10 px-6 rounded-full">
                             + Add Hall
                         </button>
-                    </a>
+                    </Link>
 
-                    {/* Arama çubuğu: ortada */}
+
                     <div className="flex-1 flex justify-center px-4">
                         <form
                             onSubmit={e => e.preventDefault()}
@@ -117,7 +118,6 @@ export default function AdminHalls() {
                         </form>
                     </div>
 
-                    {/* Sıralama DropDownları */}
                     <div className="flex items-center space-x-4">
                         <span className="font-medium text-gray-700">Sort by:</span>
                         <select
@@ -149,7 +149,8 @@ export default function AdminHalls() {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <AdminHallsTable halls={currentHalls} />
+                    <AdminHallsTable halls={currentHalls} onDelete={handleDelete}
+                    />
                 </div>
 
                 <div className="mt-6">

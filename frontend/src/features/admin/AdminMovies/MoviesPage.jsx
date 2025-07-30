@@ -32,9 +32,7 @@ export default function MoviesPage() {
 
     return (
         <div className="bg-white w-full mx-3 my-4 rounded-xl p-6 overflow-auto">
-            {/* Add Movie (sol) + Search Bar (ortada) */}
             <div className="flex flex-col md:flex-row items-center md:justify-between mb-6 gap-4">
-                {/* Add Movie butonu: SOLDA, büyütme için md:justify-start kullanıyoruz */}
                 <div className="w-full md:w-auto flex justify-start">
                     <Link to="/admin/addMovie">
                         <button className="bg-[#202123] text-white h-10 px-6 rounded-full w-full md:w-auto">
@@ -42,7 +40,6 @@ export default function MoviesPage() {
                         </button>
                     </Link>
                 </div>
-                {/* Search bar: ORTADA */}
                 <form
                     className="flex-1 flex justify-center"
                     onSubmit={e => e.preventDefault()}
@@ -68,7 +65,6 @@ export default function MoviesPage() {
                 </form>
             </div>
 
-            {/* Tablo */}
             <div className="overflow-x-auto">
                 <AdminMoviesTable
                     movies={currentMovies}

@@ -13,4 +13,12 @@ public class MovieService extends BaseService<DomainMovie, Long> {
         this.movieRepository = movieRepository;
     }
 
+     @Transactional
+        @Override
+        public void deleteById(Long id) {
+            Movie entity = movieRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Movie not found: " + id));
+            movieRepository.delete(entity);
+        }
+
 }

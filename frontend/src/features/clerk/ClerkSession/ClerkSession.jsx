@@ -1,10 +1,10 @@
 import Header from "../../admin/AdminLayout/Header";
 import React from "react";
 import ClerkSidebar from "../ClerkLayout/ClerkSidebar";
-import { useNavigate } from "react-router-dom"; // ✅ Eklendi
+import { useNavigate } from "react-router-dom";
 
 export default function ClerkSession({ movie }) {
-    const navigate = useNavigate(); // ✅ Eklendi
+    const navigate = useNavigate();
 
     return (
         <div className="h-screen flex font-[Poppins]">
@@ -14,12 +14,11 @@ export default function ClerkSession({ movie }) {
                 <main className="inner-container relative flex-1 p-10 bg-[#D9D9D9]">
                     <div className="bg-white w-full h-full mx-3 my-4 rounded-xl p-6 overflow-auto grid grid-cols-12 gap-4">
 
-                        {/* 🎯 SOL TARAF: Session kartları */}
                         <div className="bg-[#400505] col-span-7 h-full w-[70%] p-5 rounded-xl relative justify-items-center ml-4 grid grid-cols-2">
                             {movie.sessions.map((session) => (
                                 <div key={session.id}>
                                     <button
-                                        onClick={() => navigate(`/clerk/sessions/${session.id}/seats`)} // ✅ Navigasyon eklendi
+                                        onClick={() => navigate(`/clerk/sessions/${session.id}/seats`)}
                                         className="bg-[#D9D9D9] hover:bg-gray-300 rounded-md px-16 py-4 mt-6 transition duration-200 cursor-pointer"
                                     >
                                         {session.time}

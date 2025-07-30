@@ -17,7 +17,10 @@ services:
       - app-network
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: cms_app:latest
     container_name: cms_app
     restart: always
     depends_on:
@@ -32,13 +35,16 @@ services:
       - app-network
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: cms_frontend:latest
     container_name: cms_frontend
     restart: always
-    ports:
-      - "3000:80"
     depends_on:
       - backend
+    ports:
+      - "3000:80"
     networks:
       - app-network
 
@@ -47,3 +53,4 @@ volumes:
 
 networks:
   app-network:
+    driver: bridge

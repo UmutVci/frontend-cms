@@ -1,4 +1,5 @@
 import api from "../lib/axios";
+import axios from "axios";
 
 class HallService {
     async getAll() {
@@ -11,7 +12,7 @@ class HallService {
             const response = await api.post("/halls", hall);
             return response.status === 201 || response.status === 200;
         } catch (error) {
-            console.error("Hall oluşturulurken hata:", error);
+            console.error("Error while creating Hall", error);
             return false;
         }
     }
@@ -21,12 +22,12 @@ class HallService {
         return response.data || null;
     }
 
-    async update(id, hall) {
+    async update(id, data) {
         try {
-            const response = await api.put(`/halls/${id}`, hall);
-            return response.status === 200;
-        } catch (error) {
-            console.error("Hall güncellenemedi:", error);
+            const res = await api.put(`/halls/${id}`, data);
+            return res.status >= 200 && res.status < 300;
+        } catch (err) {
+            console.error("HallService.update error:", err.response?.status, err.response?.data);
             return false;
         }
     }
@@ -36,7 +37,7 @@ class HallService {
             const response = await api.delete(`/halls/${id}`);
             return response.status === 204;
         } catch (error) {
-            console.error("Hall silinemedi:", error);
+            console.error("Could not delete Hall", error);
         }
     }
 }

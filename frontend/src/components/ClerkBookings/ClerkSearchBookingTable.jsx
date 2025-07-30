@@ -11,7 +11,6 @@ export default function ClerkSearchBookingTable({bookings}){
                     <th className="px-4 py-2 text-center">Movie Name</th>
                     <th className="px-4 py-2 text-center">Session</th>
                     <th className="px-4 py-2 text-center">Seat</th>
-                    <th className="px-4 py-2 text-center">Customer Name</th>
                 </tr>
                 </thead>
                 <tbody className="bg-white">

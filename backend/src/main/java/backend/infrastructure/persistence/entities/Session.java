@@ -13,17 +13,20 @@ import java.time.LocalDateTime;
 @Table(name = "sessions")
 public class Session extends BaseEntity {
 
-    @Column(nullable = false)
-    private LocalDateTime startTime;
+       @Column(nullable = false)
+       private LocalDateTime startTime;
 
-    @ManyToOne
-    @JoinColumn(name = "movie_id")
-    private Movie movie;
+       @ManyToOne(fetch = FetchType.LAZY)
+       @JoinColumn(name = "movie_id", nullable = false)
+       @OnDelete(action = OnDeleteAction.CASCADE)
+       @JsonBackReference
+       private Movie movie;
 
-    @ManyToOne
-    @JoinColumn(name = "hall_id")
-    @JsonBackReference
-    private Hall hall;
+       @ManyToOne(fetch = FetchType.LAZY)
+       @JoinColumn(name = "hall_id", nullable = false)
+       @OnDelete(action = OnDeleteAction.CASCADE)
+       @JsonBackReference
+       private Hall hall;
 
     private Double price;
 
