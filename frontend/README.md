@@ -1,70 +1,100 @@
-# Getting Started with Create React App
+## Cinema Management System (CMS)
+This repository contains a Docker-based Cinema Management System (CMS) including:
+# Frontend: React application served via Nginx
+Backend: Spring Boot REST API
+Database: PostgreSQL
+Follow the instructions below to clone, build, and run the project locally.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Prerequisites
+Git
+Docker & Docker Compose
+(Optional) Java 21 & Maven (to run backend standalone)
+(Optional) Node.js 18+ & npm (to run frontend standalone)
+Clone the Repository
 
-## Available Scripts
 
-In the project directory, you can run:
+git clone --branch full_project https://github.com/UmutVci/frontend-cms.git
+cd frontend-cms
 
-### `npm start`
+## Running with Docker Compose
+This will build and start all services (frontend, backend, and database).
+Stop any running containers and remove volumes:
+docker-compose down --volumes
+Build images and start containers:
+# Build all services
+docker-compose build --no-cache
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Or build only frontend:
+# docker-compose build --no-cache frontend
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Start
+simply docker-compose up or (for in detached mode)
+docker-compose up -d
 
-### `npm test`
+## 3. **Verify** services are running:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+docker ps
+Access the application in your browser:
+Frontend (React + Nginx): http://localhost:3000
+Backend REST API: http://localhost:8080/api
 
-### `npm run build`
+## API Endpoints
+# First Creation/Registration of an Admin/Clerk
+Before the first time login to the system follow these creation steps:
+POST http://localhost:8080/api/ticket-clerks
+Post this into the body:
+{
+"email": "johndoe@cms-admin.com",
+"password": "yourpassword"
+}
+or for a clerk
+{
+"email": "johndoe@cms-clerk.com",
+"password": "yourpassword"
+}
+Please note that after creation of an Admin you can also create clerks via the Admin panels, but it will be a harder password :),  but not vice-versa.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Authentication
+POST /api/auth/login → Obtain JWT token
+Add the token to your header before moving on or better in the scope of this project, you can start using the frontend.
+# Movies
+GET /api/movies
+POST /api/movies
+PUT /api/movies/{id}
+DELETE /api/movies/{id}
+# Halls
+GET /api/halls
+POST /api/halls
+PUT /api/halls/{id}
+DELETE /api/halls/{id}
+# Reservations
+GET /api/reservations
+POST /api/reservations
+# Feedback
+GET /api/feedbacks
+DELETE /api/feedbacks/{id}
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Development Mode (Hot Reload)
+If you want live-reload during development, run frontend and backend separately:
+# Frontend
+cd frontend
+npm install
+npm start
+Dev server runs at http://localhost:3000
+# Backend
+cd backend
+mvn spring-boot:run
+API runs at http://localhost:8080/api
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Environment Variables
+When running the backend without Docker, set:
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/cms
+SPRING_DATASOURCE_USERNAME=admin
+SPRING_DATASOURCE_PASSWORD=admin
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributors
+Umut AVCI
+Cihan CAN
+Samet AVCI
